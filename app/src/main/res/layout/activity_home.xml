@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/home_et_search"
+            android:textSize="25dp"
+            android:layout_weight="1"
+            android:hint="món ăn, nhà hàng..."
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/home_bt_search"
+            android:layout_marginRight="10dp"
+            android:layout_width="45sp"
+            android:layout_height="45sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/home_bt_search_near"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:text="tìm quanh đây"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ListView
+        android:id="@+id/home_lv"
+        android:background="#ffffaa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"/>
+
+</LinearLayout>

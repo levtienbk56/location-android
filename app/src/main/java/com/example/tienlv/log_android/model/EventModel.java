@@ -1,11 +1,10 @@
-package com.example.tienlv.my_sql.model;
+package com.example.tienlv.log_android.model;
 
 /**
  * Created by tienlv on 1/26/15.
  */
-public class EventModel {
+public class EventModel extends AbstractModel{
     private String name;
-    private int _id;
 
     public EventModel(int id, String name){
         this._id = id;

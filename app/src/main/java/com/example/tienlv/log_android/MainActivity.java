@@ -1,4 +1,4 @@
-package com.example.tienlv.my_sql;
+package com.example.tienlv.log_android;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,13 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.tienlv.my_sql.model.EventModel;
+import com.example.tienlv.log_android.http.HttpGetTask;
+import com.example.tienlv.log_android.http.HttpTask;
+import com.example.tienlv.log_android.model.EventModel;
+import com.example.tienlv.log_android.screens.SearchActivityTest;
 
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
-    Button btInsert, btDelete, btShowall, btDeleteAll, btChangeStep, btSearchActivity;
+    Button btInsert, btDelete, btShowall, btDeleteAll, btChangeStep, btSearchActivity, btHttp;
     EditText etName, etID, etStep;
     TextView tvResult;
     private MySQLiteOpenHelper dataHelper;
@@ -40,6 +43,7 @@ public class MainActivity extends Activity {
         btDeleteAll = (Button) findViewById(R.id.bt_delete_all);
         btChangeStep = (Button) findViewById(R.id.bt_change_step);
         btSearchActivity = (Button) findViewById(R.id.bt_search_activity);
+        btHttp = (Button) findViewById(R.id.bt_http);
 
         btInsert.setOnClickListener(insertOnClick);
         btDelete.setOnClickListener(deleteOnClick);
@@ -47,14 +51,27 @@ public class MainActivity extends Activity {
         btDeleteAll.setOnClickListener(deleteAllOnClick);
         btChangeStep.setOnClickListener(changeStepOnClick);
         btSearchActivity.setOnClickListener(searchActivityOnClick);
+        btHttp.setOnClickListener(httpOnClick);
 
         dataHelper = MySQLiteOpenHelper.getInstance(MainActivity.this);
+
     }
+
+    private OnClickListener httpOnClick = new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //----------------test http request --------------------------
+            HttpTask task = new HttpGetTask();
+            task.execute("http://www.google.com/search?q=mkyong");
+
+
+        }
+    };
 
     private OnClickListener searchActivityOnClick = new OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+            Intent intent = new Intent(MainActivity.this, SearchActivityTest.class);
             startActivity(intent);
         }
     };
@@ -104,7 +121,7 @@ public class MainActivity extends Activity {
         public void onClick(View view) {
             try {
                 int i = Integer.parseInt(etStep.getText().toString());
-                LogAPI.step = i;
+                LogAPI.upStep = i;
                 initStartupReceiver();
             } catch (Exception ex) {
                 ex.printStackTrace();

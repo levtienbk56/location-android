@@ -1,4 +1,4 @@
-package com.example.tienlv.my_sql;
+package com.example.tienlv.log_android;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.tienlv.my_sql.model.EventModel;
-import com.example.tienlv.my_sql.model.LogModel;
+import com.example.tienlv.log_android.model.EventModel;
+import com.example.tienlv.log_android.model.LogModel;
 
 import java.util.ArrayList;
 
@@ -197,6 +197,15 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
         }
 
         return arrayList;
+    }
+
+    public void deleteLog(String _id) {
+        database = this.getWritableDatabase();
+        if (_id.isEmpty()) {
+            Log.d(TAG, "deleteLog: fails");
+        }
+        int i = database.delete(MySQLiteConstract.TblLog.TABLE_NAME, MySQLiteConstract.TblLog.COLUMN_NAME_ID + " = " + _id, null);
+        Log.d(TAG, "deleteLog id = " + _id + " : " + i);
     }
 
 }

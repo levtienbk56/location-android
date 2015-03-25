@@ -1,10 +1,9 @@
-package com.example.tienlv.my_sql.model;
+package com.example.tienlv.log_android.model;
 
 /**
  * Created by tienlv on 1/26/15.
  */
-public class LogModel {
-    private int _id;
+public class LogModel extends AbstractModel{
     private String eventName;
     private String date;
     private String value;

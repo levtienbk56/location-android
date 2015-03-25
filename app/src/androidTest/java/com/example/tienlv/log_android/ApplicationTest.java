@@ -1,4 +1,4 @@
-package com.example.tienlv.my_sql;
+package com.example.tienlv.log_android;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package com.example.tienlv.my_sql;
+package com.example.tienlv.log_android.receiver;
 
 import java.util.List;
 
@@ -13,7 +13,8 @@ import android.content.pm.ResolveInfo;
 import android.os.PowerManager;
 import android.util.Log;
 
-import com.example.tienlv.my_sql.model.EventModel;
+import com.example.tienlv.log_android.MySQLiteOpenHelper;
+import com.example.tienlv.log_android.model.EventModel;
 
 
 public class CheckRunningApplicationReceiver extends BroadcastReceiver {
@@ -40,7 +41,6 @@ public class CheckRunningApplicationReceiver extends BroadcastReceiver {
                 ActivityManager am = (ActivityManager) aContext.getSystemService(Context.ACTIVITY_SERVICE);
                 List<ActivityManager.RunningTaskInfo> alltasks = am.getRunningTasks(1); //get first app
 
-                Log.d(TAG, "have " + alltasks.size());
                 EventModel event;
                 for (ActivityManager.RunningTaskInfo aTask : alltasks) {
                     for (PackageInfo pi : packageList) {
@@ -48,6 +48,7 @@ public class CheckRunningApplicationReceiver extends BroadcastReceiver {
                         if (aTask.topActivity.getPackageName().equals(pi.packageName.toString())
                                 && !aTask.topActivity.getPackageName().equals(currentHomePackage)) {
                             String s = packageManager.getApplicationLabel(pi.applicationInfo).toString();
+                            Log.d(TAG, "top app: " +s);
 
                             event = new EventModel();
                             event.setName(s);

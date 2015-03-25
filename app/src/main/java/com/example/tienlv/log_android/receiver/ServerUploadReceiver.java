@@ -1,14 +1,14 @@
-package com.example.tienlv.my_sql;
+package com.example.tienlv.log_android.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.wifi.WifiManager;
 import android.util.Log;
+
+import com.example.tienlv.log_android.MySQLiteOpenHelper;
 
 public class ServerUploadReceiver extends BroadcastReceiver {
 
@@ -24,8 +24,10 @@ public class ServerUploadReceiver extends BroadcastReceiver {
                 // which is data select from DB?
                 // then  delete after upload?
                 dataHelper = MySQLiteOpenHelper.getInstance(aContext);
-                dataHelper.deleteAllEvent();
+
+                //dataHelper.deleteAllEvent();
                 Log.d(TAG, "wifi connected, uploading...");
+                //...
             }else{
                 Log.d(TAG, "network not available");
             }

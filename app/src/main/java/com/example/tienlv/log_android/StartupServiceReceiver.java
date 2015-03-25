@@ -1,4 +1,4 @@
-package com.example.tienlv.my_sql;
+package com.example.tienlv.log_android;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

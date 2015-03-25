@@ -1,4 +1,4 @@
-package com.example.tienlv.my_sql;
+package com.example.tienlv.log_android.screens;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,22 +9,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.tienlv.my_sql.model.EventModel;
-import com.example.tienlv.my_sql.model.LogModel;
+import com.example.tienlv.log_android.LogAPI;
+import com.example.tienlv.log_android.R;
+import com.example.tienlv.log_android.model.LogModel;
 
 import java.util.ArrayList;
 
 
-public class SearchActivity extends Activity {
+public class SearchActivityTest extends Activity {
     Button btSearch, btSearchNear, btShowLog;
     EditText et_search;
     TextView tvLog;
-    LogAPI logAPI = new LogAPI(SearchActivity.this);
+    LogAPI logAPI = new LogAPI(SearchActivityTest.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_search_test);
 
         btSearch = (Button) findViewById(R.id.bt_search);
         btSearchNear = (Button) findViewById(R.id.bt_search_near);
@@ -92,5 +93,37 @@ public class SearchActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static class SearchActivity extends Activity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_search2);
+        }
+
+
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.menu_search, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            // Handle action bar item clicks here. The action bar will
+            // automatically handle clicks on the Home/Up button, so long
+            // as you specify a parent activity in AndroidManifest.xml.
+            int id = item.getItemId();
+
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.action_settings) {
+                return true;
+            }
+
+            return super.onOptionsItemSelected(item);
+        }
     }
 }

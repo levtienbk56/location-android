@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tienlv.my_sql" >
+    package="com.example.tienlv.log_android" >
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -23,17 +26,29 @@
 
         <service android:name=".MyService" />
 
-        <receiver android:name=".StartupReceiver" >
+        <receiver android:name=".receiver.StartupReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETE" />
                 <action android:name="StartupReceiver_Manual_Start" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".CheckRunningApplicationReceiver" />
-        <receiver android:name=".ServerUploadReceiver" />
+        <receiver android:name=".receiver.CheckRunningApplicationReceiver" />
+        <receiver android:name=".receiver.ServerUploadReceiver" />
 
         <activity
             android:name=".SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name=".screens.home.HomeActivity"
+            android:label="@string/title_activity_home" >
+        </activity>
+        <activity
+            android:name=".screens.search.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name=".screens.SearchActivityTest$SearchActivity"
             android:label="@string/title_activity_search" >
         </activity>
     </application>

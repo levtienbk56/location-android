@@ -1,8 +1,8 @@
-package com.example.tienlv.my_sql;
+package com.example.tienlv.log_android;
 
 import android.content.Context;
 
-import com.example.tienlv.my_sql.model.LogModel;
+import com.example.tienlv.log_android.model.LogModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,8 +11,9 @@ import java.util.Calendar;
  * Created by tienlv on 1/27/15.
  */
 public class LogAPI {
-    public static int step = 10000;
-    private  MySQLiteOpenHelper dataHelper;
+    public static int checkStep = 10000;
+    public static int upStep = 3600000;
+    private MySQLiteOpenHelper dataHelper;
 
     public static final String EVENT_SEARCH_KEY = "SEARCH_KEY";
     public static final String EVENT_SEARCH_NEAR_BY = "SEARCH_NEAR_BY";
@@ -21,7 +22,7 @@ public class LogAPI {
         dataHelper = MySQLiteOpenHelper.getInstance(context);
     }
 
-    private  String getCurrentDate() {
+    private String getCurrentDate() {
         Calendar c = Calendar.getInstance();
 
         int seconds = c.get(Calendar.SECOND);
@@ -34,7 +35,7 @@ public class LogAPI {
         return hours + ":" + minus + ":" + seconds + " " + days + "/" + months + "/" + years;
     }
 
-    public  void insertLog(String eventName, String value) {
+    public void insertLog(String eventName, String value) {
         LogModel log = new LogModel();
         log.setEventName(eventName);
         log.setDate(getCurrentDate());
@@ -42,7 +43,8 @@ public class LogAPI {
 
         dataHelper.insertLog(log);
     }
-    public ArrayList<LogModel> getAllLog(){
+
+    public ArrayList<LogModel> getAllLog() {
         return dataHelper.getAllLog();
     }
 
