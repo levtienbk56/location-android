@@ -1,12 +1,12 @@
 package com.example.tienlv.log_android.model;
 
-/**
- * Created by tienlv on 3/25/15.
- */
+import java.util.ArrayList;
+
 public class Disk {
-    String name = "";
-    int price = 0;
-    String address = "";
+    private String name = "";
+    private int price = 0;
+    private String address = "";
+    private ArrayList<String> images = new ArrayList<String>();
 
     public Disk(){
 
@@ -34,5 +34,13 @@ public class Disk {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public ArrayList<String> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<String> images) {
+        this.images = images;
     }
 }

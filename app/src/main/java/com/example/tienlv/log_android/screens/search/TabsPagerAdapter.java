@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 
+
     public TabsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -14,11 +15,11 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int i) {
         switch (i) {
             case 0:
-                return new DiskFragment();
+                return SearchActivity.diskFragment;
             case 1:
-                return new LocationFragment();
+                return SearchActivity.locationFragment;
             case 2:
-                return new AlbumFragment();
+                return SearchActivity.albumFragment;
         }
         return null;
     }

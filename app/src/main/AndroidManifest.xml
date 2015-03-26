@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".screens.home.HomeActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,19 +36,11 @@
         <receiver android:name=".receiver.ServerUploadReceiver" />
 
         <activity
-            android:name=".SearchActivity"
-            android:label="@string/title_activity_search" >
-        </activity>
-        <activity
-            android:name=".screens.home.HomeActivity"
-            android:label="@string/title_activity_home" >
-        </activity>
-        <activity
             android:name=".screens.search.SearchActivity"
             android:label="@string/title_activity_search" >
         </activity>
         <activity
-            android:name=".screens.SearchActivityTest$SearchActivity"
+            android:name=".screens.SearchActivityTest"
             android:label="@string/title_activity_search" >
         </activity>
     </application>
