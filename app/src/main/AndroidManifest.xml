@@ -43,6 +43,10 @@
             android:name=".screens.SearchActivityTest"
             android:label="@string/title_activity_search" >
         </activity>
+        <activity
+            android:name=".screens.disk.DiskActivity"
+            android:label="@string/title_activity_disk" >
+        </activity>
     </application>
 
 </manifest>

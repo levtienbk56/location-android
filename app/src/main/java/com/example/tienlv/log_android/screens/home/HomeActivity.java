@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.tienlv.log_android.R;
 import com.example.tienlv.log_android.model.Disk;
+import com.example.tienlv.log_android.screens.disk.DiskActivity;
 import com.example.tienlv.log_android.screens.search.SearchActivity;
 
 import java.util.ArrayList;
@@ -50,11 +53,24 @@ public class HomeActivity extends Activity {
         listView = (ListView) findViewById(R.id.home_lv);
         diskAdapter = new DiskAdapter(this, arrayList);
         listView.setAdapter(diskAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                detailDisk(position);
+            }
+        });
+
     }
 
     //action for search Button :)
-    public void search(View v){
+    public void search(View v) {
         Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+
+    public void detailDisk(int position){
+        Intent intent = new Intent(getBaseContext(), DiskActivity.class);
+        intent.putExtra("EXTRA_SESSION_ID", arrayList.get(position).getId());
         startActivity(intent);
     }
 
