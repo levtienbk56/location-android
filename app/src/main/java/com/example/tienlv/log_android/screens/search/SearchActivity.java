@@ -19,7 +19,7 @@ public class SearchActivity extends FragmentActivity implements ActionBar.TabLis
     private TabsPagerAdapter tabsPagerAdapter;
     private ViewPager viewPager;
     private ActionBar actionBar;
-    private String[] tabs = {"Disk", "Location", "Album"};
+    private String[] tabs = {"Dish", "Location", "Album"};
     public static Fragment diskFragment;
     public static Fragment locationFragment;
     public static Fragment albumFragment;

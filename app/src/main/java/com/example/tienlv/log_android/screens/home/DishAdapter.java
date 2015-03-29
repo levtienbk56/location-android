@@ -9,17 +9,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tienlv.log_android.R;
-import com.example.tienlv.log_android.model.Disk;
+import com.example.tienlv.log_android.Utils.ImageLoader;
+import com.example.tienlv.log_android.model.Dish;
 
 import java.util.ArrayList;
 
-public class DiskAdapter extends BaseAdapter {
+public class DishAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater = null;
-    private ArrayList<Disk> arrayList;
+    private ArrayList<Dish> arrayList;
     public ImageLoader imageLoader;
 
-    public DiskAdapter(Activity context, ArrayList<Disk> arrayList) {
+    public DishAdapter(Activity context, ArrayList<Dish> arrayList) {
         this.activity = context;
         this.arrayList = arrayList;
         this.inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -30,7 +31,7 @@ public class DiskAdapter extends BaseAdapter {
         return arrayList.size();
     }
 
-    public Disk getItem(int position) {
+    public Dish getItem(int position) {
         return arrayList.get(position);
     }
 
@@ -41,25 +42,26 @@ public class DiskAdapter extends BaseAdapter {
 
     public android.view.View getView(int position, android.view.View convertView, android.view.ViewGroup parent) {
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.adapter_disk_home, null);
+            convertView = inflater.inflate(R.layout.adapter_dish_home, null);
         TextView tvName = (TextView) convertView.findViewById(R.id.tv_name_home_disk);
-        TextView tvPrice = (TextView) convertView.findViewById(R.id.tv_price_home_disk);
+        TextView tvLike = (TextView) convertView.findViewById(R.id.tv_like_home_disk);
         TextView tvLocation = (TextView) convertView.findViewById(R.id.tv_location_home_disk);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.image_home_disk);
 
-        Disk disk = getItem(position);
-        tvName.setText(disk.getName());
-        tvPrice.setText(disk.getPrice() + "$");
-        tvLocation.setText(disk.getAddress());
+        Dish dish = getItem(position);
+        tvName.setText(dish.getName());
+        tvLike.setText("like: " + dish.getLikeCount());
+        tvLocation.setText(dish.getAddress());
+
+        Log.d("DiskAdapter", dish.getId() + ":" + dish.getName() + ":" + dish.getLikeCount());
 
         //check image links
         String url;
         if (getItem(position).getImages().isEmpty()) {
             url = "";
-            Log.d("DiskAdapter", "disk dont have any image ");
         } else
             url = arrayList.get(position).getImages().get(0);
-        imageLoader.DisplayImage(url, imageView);
+        imageLoader.displayImage(url, imageView, 100);  //100-requireSize
 
         return convertView;
     }

@@ -7,55 +7,55 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.tienlv.log_android.R;
-import com.example.tienlv.log_android.model.Disk;
-import com.example.tienlv.log_android.screens.disk.DiskActivity;
+import com.example.tienlv.log_android.http.HttpTask;
+import com.example.tienlv.log_android.screens.dish.DishActivity;
 import com.example.tienlv.log_android.screens.search.SearchActivity;
 
-import java.util.ArrayList;
+public class HomeActivity extends Activity implements IHomeActivity{
 
-public class HomeActivity extends Activity {
-
-    private ArrayList<Disk> arrayList = new ArrayList<Disk>();
-    private DiskAdapter diskAdapter = null;
-    private ListView listView = null;
+    private static DishAdapter dishAdapter = null;
+    private static ListView listView = null;
+    HomePresenter homePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        homePresenter = new HomePresenter(this);
 
-        //test a disk
-        Disk adisk = new Disk();
-        adisk.setName("thịt chó hấp");
-        adisk.setAddress("số 1 Đại Cồ Việt ");
-        adisk.setPrice(200000);
-        ArrayList<String> images = new ArrayList<String>();
-        images.add("http://icons.iconarchive.com/icons/yellowicon/game-stars/256/Mario-icon.png");
-        images.add("https://pbs.twimg.com/profile_images/1517737798/aam-twitter-right-final_normal.png");
-        adisk.setImages(images);
-        arrayList.add(adisk);
-        arrayList.add(adisk);
-        arrayList.add(adisk);
-        arrayList.add(adisk);
-        arrayList.add(adisk);
-        arrayList.add(adisk);
-        arrayList.add(adisk);
-        arrayList.add(adisk);
-        arrayList.add(adisk);
-        arrayList.add(adisk);
+//        // test a disk
+//         Dish adisk = new Dish();
+//         adisk.setName("thịt chó hấp");
+//         adisk.setAddress("số 1 Đại Cồ Việt ");
+//         adisk.setPrice(200000);
+//         ArrayList<String> images = new ArrayList<String>();
+//         images.add("http://icons.iconarchive.com/icons/yellowicon/game-stars/256/Mario-icon.png");
+//         images.add("https://pbs.twimg.com/profile_images/1517737798/aam-twitter-right-final_normal.png");
+//         adisk.setImages(images);
+//         arrayList.add(adisk);
+//         arrayList.add(adisk);
+//         arrayList.add(adisk);
+//         arrayList.add(adisk);
+//         arrayList.add(adisk);
+//         arrayList.add(adisk);
+//         arrayList.add(adisk);
+//         arrayList.add(adisk);
+//         arrayList.add(adisk);
+//         arrayList.add(adisk);
+
+        //get trend disks from server
+        requestDisks();
 
         //show list
         listView = (ListView) findViewById(R.id.home_lv);
-        diskAdapter = new DiskAdapter(this, arrayList);
-        listView.setAdapter(diskAdapter);
+        dishAdapter = new DishAdapter(this, homePresenter.getDishList());
+        listView.setAdapter(dishAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 detailDisk(position);
             }
         });
@@ -68,9 +68,9 @@ public class HomeActivity extends Activity {
         startActivity(intent);
     }
 
-    public void detailDisk(int position){
-        Intent intent = new Intent(getBaseContext(), DiskActivity.class);
-        intent.putExtra("EXTRA_SESSION_ID", arrayList.get(position).getId());
+    public void detailDisk(int position) {
+        Intent intent = new Intent(getBaseContext(), DishActivity.class);
+        intent.putExtra("EXTRA_DISH_NO", position);
         startActivity(intent);
     }
 
@@ -95,5 +95,16 @@ public class HomeActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void requestDisks() {
+        HttpTask task = new AnalyzeDishData();
+        task.execute("http://54.169.170.248:8080/Foodie/webresources/food/newest");
+
+    }
+
+    public void reloadListView() {
+        dishAdapter.notifyDataSetChanged();
+        listView.setAdapter(dishAdapter);
     }
 }

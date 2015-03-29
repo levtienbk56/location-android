@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Location extends Item{
     private String name = "";
     private String address = "";
-    private ArrayList<Disk> disks = new ArrayList<Disk>();
+    private ArrayList<Dish> dishs = new ArrayList<Dish>();
 
     public String getName() {
         return name;
@@ -24,12 +24,12 @@ public class Location extends Item{
         this.address = address;
     }
 
-    public ArrayList<Disk> getDisks() {
-        return disks;
+    public ArrayList<Dish> getDishs() {
+        return dishs;
     }
 
-    public void setDisks(ArrayList<Disk> disks) {
-        this.disks = disks;
+    public void setDishs(ArrayList<Dish> dishs) {
+        this.dishs = dishs;
     }
 
     public Location(){

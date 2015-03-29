@@ -1,4 +1,4 @@
-package com.example.tienlv.log_android.screens.home;
+package com.example.tienlv.log_android.Utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,12 +19,16 @@ import android.os.Handler;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.example.tienlv.log_android.R;
+import com.example.tienlv.log_android.Utils.FileCache;
+import com.example.tienlv.log_android.Utils.ImageUtils;
+import com.example.tienlv.log_android.Utils.MemoryCache;
 
 public class ImageLoader {
-
+    int REQUIRED_SIZE = 100;
     MemoryCache memoryCache = new MemoryCache();
     FileCache fileCache;
     private Map<ImageView, String> imageViews = Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
@@ -38,7 +42,8 @@ public class ImageLoader {
 
     final int stub_id = R.drawable.stub;
 
-    public void DisplayImage(String url, ImageView imageView) {
+    public void displayImage(String url, ImageView imageView, int requireSize) {
+        REQUIRED_SIZE = requireSize;
         imageViews.put(imageView, url);
         Bitmap bitmap = memoryCache.get(url);
         if (bitmap != null)
@@ -55,6 +60,8 @@ public class ImageLoader {
     }
 
     private Bitmap getBitmap(String url) {
+        url = "http://" + url;
+        Log.d("ImageLoader", "url:  " + url);
         File f = fileCache.getFile(url);
 
         //from SD cache
@@ -72,7 +79,7 @@ public class ImageLoader {
             conn.setInstanceFollowRedirects(true);
             InputStream is = conn.getInputStream();
             OutputStream os = new FileOutputStream(f);
-            Utils.CopyStream(is, os);
+            ImageUtils.CopyStream(is, os);
             os.close();
             conn.disconnect();
             bitmap = decodeFile(f);
@@ -96,7 +103,6 @@ public class ImageLoader {
             stream1.close();
 
             //Find the correct scale value. It should be the power of 2.
-            final int REQUIRED_SIZE = 100;
             int width_tmp = o.outWidth, height_tmp = o.outHeight;
             int scale = 1;
             while (true) {

@@ -1,9 +1,9 @@
-package com.example.tienlv.log_android.screens.home;
+package com.example.tienlv.log_android.Utils;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class Utils {
+public class ImageUtils {
     public static void CopyStream(InputStream is, OutputStream os) {
         final int buffer_size = 1024;
         try {
