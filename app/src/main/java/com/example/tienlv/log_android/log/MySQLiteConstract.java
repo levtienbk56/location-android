@@ -1,4 +1,4 @@
-package com.example.tienlv.log_android;
+package com.example.tienlv.log_android.log;
 
 import android.provider.BaseColumns;
 

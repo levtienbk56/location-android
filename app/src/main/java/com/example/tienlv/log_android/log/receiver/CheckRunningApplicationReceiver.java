@@ -1,4 +1,4 @@
-package com.example.tienlv.log_android.receiver;
+package com.example.tienlv.log_android.log.receiver;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import android.content.pm.ResolveInfo;
 import android.os.PowerManager;
 import android.util.Log;
 
-import com.example.tienlv.log_android.MySQLiteOpenHelper;
-import com.example.tienlv.log_android.model.EventModel;
+import com.example.tienlv.log_android.log.MySQLiteOpenHelper;
+import com.example.tienlv.log_android.log.model.EventModel;
 
 
 public class CheckRunningApplicationReceiver extends BroadcastReceiver {

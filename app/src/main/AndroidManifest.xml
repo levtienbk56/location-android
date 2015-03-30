@@ -24,16 +24,16 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".MyService" />
+        <service android:name=".log.service.MyService" />
 
-        <receiver android:name=".receiver.StartupReceiver" >
+        <receiver android:name=".log.receiver.StartupReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETE" />
                 <action android:name="StartupReceiver_Manual_Start" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".receiver.CheckRunningApplicationReceiver" />
-        <receiver android:name=".receiver.ServerUploadReceiver" />
+        <receiver android:name=".log.receiver.CheckRunningApplicationReceiver" />
+        <receiver android:name=".log.receiver.ServerUploadReceiver" />
 
         <activity
             android:name=".screens.search.SearchActivity"

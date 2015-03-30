@@ -1,8 +1,8 @@
-package com.example.tienlv.log_android;
+package com.example.tienlv.log_android.log;
 
 import android.content.Context;
 
-import com.example.tienlv.log_android.model.LogModel;
+import com.example.tienlv.log_android.log.model.LogModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,8 +11,8 @@ import java.util.Calendar;
  * Created by tienlv on 1/27/15.
  */
 public class LogAPI {
-    public static int checkStep = 10000;
-    public static int upStep = 3600000;
+    public static int checkStep = 10000;        //checking cycle
+    public static int upStep = 3600000;         //server push cycle
     private MySQLiteOpenHelper dataHelper;
 
     public static final String EVENT_SEARCH_KEY = "SEARCH_KEY";
@@ -22,6 +22,10 @@ public class LogAPI {
         dataHelper = MySQLiteOpenHelper.getInstance(context);
     }
 
+    /**
+     * get current time
+     * @return datetime as string
+     */
     private String getCurrentDate() {
         Calendar c = Calendar.getInstance();
 

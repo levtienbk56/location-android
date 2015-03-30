@@ -1,4 +1,4 @@
-package com.example.tienlv.log_android;
+package com.example.tienlv.log_android.log;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,9 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.tienlv.log_android.R;
 import com.example.tienlv.log_android.http.HttpGetTask;
 import com.example.tienlv.log_android.http.HttpTask;
-import com.example.tienlv.log_android.model.EventModel;
+import com.example.tienlv.log_android.log.model.EventModel;
 import com.example.tienlv.log_android.screens.SearchActivityTest;
 
 import java.util.ArrayList;

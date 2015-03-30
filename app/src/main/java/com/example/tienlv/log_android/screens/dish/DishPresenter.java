@@ -1,5 +1,7 @@
 package com.example.tienlv.log_android.screens.dish;
 
+import android.graphics.drawable.Drawable;
+
 import com.example.tienlv.log_android.model.Dish;
 
 public class DishPresenter {
@@ -10,7 +12,15 @@ public class DishPresenter {
         this.activity = activity;
     }
 
-    public static void replaceDish(Dish mdish){
+    public static void replaceDish(Dish mdish) {
         dish = mdish;
+    }
+
+    public static void reloadView() {
+        activity.reloadView();
+    }
+
+    public Dish getDish() {
+        return dish;
     }
 }

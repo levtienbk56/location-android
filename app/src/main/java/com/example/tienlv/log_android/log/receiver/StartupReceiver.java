@@ -1,4 +1,4 @@
-package com.example.tienlv.log_android.receiver;
+package com.example.tienlv.log_android.log.receiver;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.util.Log;
 
-import com.example.tienlv.log_android.LogAPI;
+import com.example.tienlv.log_android.log.LogAPI;
 
 public class StartupReceiver extends BroadcastReceiver{
     static final String TAG = "SR";

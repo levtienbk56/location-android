@@ -1,10 +1,18 @@
 package com.example.tienlv.log_android.screens.dish;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.tienlv.log_android.R;
+import com.example.tienlv.log_android.Utils.ImageLoader;
 import com.example.tienlv.log_android.model.Dish;
 import com.example.tienlv.log_android.screens.home.HomePresenter;
 
@@ -18,12 +26,43 @@ public class DishActivity extends Activity implements IDishActivity {
         presenter = new DishPresenter(this);
 
         Bundle extra = getIntent().getExtras();
-        int no = extra.getInt("EXTRA_DISH_ID");
+        int no = extra.getInt("EXTRA_DISH_NO");
         presenter.replaceDish(HomePresenter.getDishList().get(no));
         Log.d("DishActivity", "id: " + no);
+
+        //show all information of dish
+        reloadView();
+
+
     }
 
-    public void loadView(){
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+
+    }
+
+    public void reloadView() {
+        ImageView imageView = (ImageView) findViewById(R.id.tv_avatar_dish);
+
+        //load avatar dish
+        if (!presenter.getDish().getImages().isEmpty()){
+            ImageLoader imageLoader = new ImageLoader(this);
+            imageLoader.displayImage(presenter.getDish().getImages().get(0)
+                    , imageView, 320);  //320-requireSize
+
+        }
+
+        //other information
+        TextView name = (TextView) findViewById(R.id.tv_name_disk);
+        TextView like = (TextView) findViewById(R.id.tv_like_count);
+        TextView address = (TextView) findViewById(R.id.tv_address_dish);
+
+        name.setText(presenter.getDish().getName());
+        like.setText("like: "+ presenter.getDish().getLikeCount());
+        address.setText("d/c: "+presenter.getDish().getAddress());
 
     }
 

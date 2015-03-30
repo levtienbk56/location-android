@@ -26,7 +26,7 @@ public class AnalyzeDishData extends HttpGetTask {
                 dish.setId(jDish.getString("id"));
                 dish.setName(jDish.getString("name"));
                 dish.setAddress(jDish.getString("address"));
-                dish.getImages().add(jDish.getString("img"));
+                dish.getImages().add("http://" + jDish.getString("img"));
                 dish.setLikeCount(jDish.getInt("like"));
 
                 //them vao array

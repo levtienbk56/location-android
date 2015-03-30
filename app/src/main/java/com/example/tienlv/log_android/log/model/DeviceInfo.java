@@ -1,11 +1,11 @@
-package com.example.tienlv.log_android.model;
+package com.example.tienlv.log_android.log.model;
 
 import android.content.Context;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-public class DeviceInfo extends AbstractModel{
+public class DeviceInfo extends AbstractModel {
     int os;
     String os_string;
     String manufacturer;

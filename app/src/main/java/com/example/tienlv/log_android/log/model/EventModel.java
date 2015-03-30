@@ -1,9 +1,9 @@
-package com.example.tienlv.log_android.model;
+package com.example.tienlv.log_android.log.model;
 
 /**
  * Created by tienlv on 1/26/15.
  */
-public class EventModel extends AbstractModel{
+public class EventModel extends AbstractModel {
     private String name;
 
     public EventModel(int id, String name){

@@ -1,4 +1,4 @@
-package com.example.tienlv.log_android;
+package com.example.tienlv.log_android.log;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.tienlv.log_android.model.EventModel;
-import com.example.tienlv.log_android.model.LogModel;
+import com.example.tienlv.log_android.log.model.EventModel;
+import com.example.tienlv.log_android.log.model.LogModel;
 
 import java.util.ArrayList;
 

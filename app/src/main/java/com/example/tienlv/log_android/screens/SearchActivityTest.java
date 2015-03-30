@@ -9,9 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.tienlv.log_android.LogAPI;
+import com.example.tienlv.log_android.log.LogAPI;
 import com.example.tienlv.log_android.R;
-import com.example.tienlv.log_android.model.LogModel;
+import com.example.tienlv.log_android.log.model.LogModel;
 
 import java.util.ArrayList;
 

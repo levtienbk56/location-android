@@ -1,4 +1,4 @@
-package com.example.tienlv.log_android.receiver;
+package com.example.tienlv.log_android.log.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-import com.example.tienlv.log_android.MySQLiteOpenHelper;
+import com.example.tienlv.log_android.log.MySQLiteOpenHelper;
 
 public class ServerUploadReceiver extends BroadcastReceiver {
 

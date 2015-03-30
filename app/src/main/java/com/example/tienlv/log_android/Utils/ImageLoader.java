@@ -60,7 +60,6 @@ public class ImageLoader {
     }
 
     private Bitmap getBitmap(String url) {
-        url = "http://" + url;
         Log.d("ImageLoader", "url:  " + url);
         File f = fileCache.getFile(url);
 

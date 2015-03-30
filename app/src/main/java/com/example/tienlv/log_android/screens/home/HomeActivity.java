@@ -3,6 +3,7 @@ package com.example.tienlv.log_android.screens.home;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 
 import com.example.tienlv.log_android.R;
 import com.example.tienlv.log_android.http.HttpTask;
+import com.example.tienlv.log_android.log.LogAPI;
 import com.example.tienlv.log_android.screens.dish.DishActivity;
 import com.example.tienlv.log_android.screens.search.SearchActivity;
 
@@ -18,36 +20,22 @@ public class HomeActivity extends Activity implements IHomeActivity{
 
     private static DishAdapter dishAdapter = null;
     private static ListView listView = null;
-    HomePresenter homePresenter;
+    private HomePresenter homePresenter;
+    LogAPI logAPI;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //========most important initialize ============//
         homePresenter = new HomePresenter(this);
+        logAPI = new LogAPI(this);
+        //==============================================//
 
-//        // test a disk
-//         Dish adisk = new Dish();
-//         adisk.setName("thịt chó hấp");
-//         adisk.setAddress("số 1 Đại Cồ Việt ");
-//         adisk.setPrice(200000);
-//         ArrayList<String> images = new ArrayList<String>();
-//         images.add("http://icons.iconarchive.com/icons/yellowicon/game-stars/256/Mario-icon.png");
-//         images.add("https://pbs.twimg.com/profile_images/1517737798/aam-twitter-right-final_normal.png");
-//         adisk.setImages(images);
-//         arrayList.add(adisk);
-//         arrayList.add(adisk);
-//         arrayList.add(adisk);
-//         arrayList.add(adisk);
-//         arrayList.add(adisk);
-//         arrayList.add(adisk);
-//         arrayList.add(adisk);
-//         arrayList.add(adisk);
-//         arrayList.add(adisk);
-//         arrayList.add(adisk);
-
-        //get trend disks from server
-        requestDisks();
+        //get trend dishs from server
+        requestDishs();
 
         //show list
         listView = (ListView) findViewById(R.id.home_lv);
@@ -72,6 +60,7 @@ public class HomeActivity extends Activity implements IHomeActivity{
         Intent intent = new Intent(getBaseContext(), DishActivity.class);
         intent.putExtra("EXTRA_DISH_NO", position);
         startActivity(intent);
+        Log.d("HomeActivity", "u click " + position);
     }
 
 
@@ -97,7 +86,7 @@ public class HomeActivity extends Activity implements IHomeActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    public void requestDisks() {
+    public void requestDishs() {
         HttpTask task = new AnalyzeDishData();
         task.execute("http://54.169.170.248:8080/Foodie/webresources/food/newest");
 
