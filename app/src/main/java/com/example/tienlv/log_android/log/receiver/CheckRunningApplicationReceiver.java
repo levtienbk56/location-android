@@ -13,15 +13,17 @@ import android.content.pm.ResolveInfo;
 import android.os.PowerManager;
 import android.util.Log;
 
+import com.example.tienlv.log_android.log.LogAPI;
 import com.example.tienlv.log_android.log.MySQLiteOpenHelper;
 import com.example.tienlv.log_android.log.model.EventModel;
+import com.example.tienlv.log_android.log.model.LogModel;
 
 
 public class CheckRunningApplicationReceiver extends BroadcastReceiver {
 
     public final String TAG = "CRAR"; // CheckRunningApplicationReceiver
     PackageManager packageManager;
-    private MySQLiteOpenHelper dataHelper;
+    private LogAPI logAPI;
 
     @Override
     public void onReceive(Context aContext, Intent anIntent) {
@@ -33,7 +35,7 @@ public class CheckRunningApplicationReceiver extends BroadcastReceiver {
 
             //check whenever phone is interactive?
             if (isActive(aContext)) {
-                dataHelper = MySQLiteOpenHelper.getInstance(aContext);
+                logAPI = new LogAPI(aContext);
 
                 packageManager = aContext.getPackageManager();
                 List<PackageInfo> packageList = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
@@ -41,18 +43,15 @@ public class CheckRunningApplicationReceiver extends BroadcastReceiver {
                 ActivityManager am = (ActivityManager) aContext.getSystemService(Context.ACTIVITY_SERVICE);
                 List<ActivityManager.RunningTaskInfo> alltasks = am.getRunningTasks(1); //get first app
 
-                EventModel event;
                 for (ActivityManager.RunningTaskInfo aTask : alltasks) {
                     for (PackageInfo pi : packageList) {
                         //only insert into DB: app is installed and except Launcher
                         if (aTask.topActivity.getPackageName().equals(pi.packageName.toString())
                                 && !aTask.topActivity.getPackageName().equals(currentHomePackage)) {
                             String s = packageManager.getApplicationLabel(pi.applicationInfo).toString();
-                            Log.d(TAG, "top app: " +s);
-
-                            event = new EventModel();
-                            event.setName(s);
-                            dataHelper.insertEvent(event);
+                            Log.d(TAG, "top app: " + s);
+                            
+                            logAPI.insertLog(LogAPI.EVENT_RUNNING_APP, s);
                         }
                     }
 

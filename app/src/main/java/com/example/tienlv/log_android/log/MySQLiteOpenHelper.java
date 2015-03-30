@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.example.tienlv.log_android.R;
 import com.example.tienlv.log_android.log.model.EventModel;
 import com.example.tienlv.log_android.log.model.LogModel;
 
@@ -22,6 +24,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "MyDataBase.db";
     private SQLiteDatabase database;
     private static MySQLiteOpenHelper mInstance;
+    private static Context context;
 
     // SQL query create table tblevent
     private static final String CREATE_TABLE_EVENT =
@@ -43,6 +46,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public MySQLiteOpenHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         database = this.getWritableDatabase();
+        this.context = context;
     }
 
     @Override
@@ -61,6 +65,8 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public static MySQLiteOpenHelper getInstance(Context ctx) {
         if (mInstance == null) {
             mInstance = new MySQLiteOpenHelper(ctx.getApplicationContext());
+        }else {
+            context = ctx;
         }
         return mInstance;
     }
@@ -169,6 +175,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
         long i = database.insert(MySQLiteConstract.TblLog.TABLE_NAME, null, values);
         Log.d(TAG, "insertLog : id inserted =" + i);
+        Toast.makeText(context, "insert log: " +log.getEventName(), Toast.LENGTH_SHORT).show();
     }
 
     public ArrayList<LogModel> getAllLog() {

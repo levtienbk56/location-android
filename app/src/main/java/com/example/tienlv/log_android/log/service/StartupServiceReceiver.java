@@ -1,3 +1,8 @@
+/**
+ * khong dung den
+ */
+
+
 package com.example.tienlv.log_android.log.service;
 
 import android.content.BroadcastReceiver;

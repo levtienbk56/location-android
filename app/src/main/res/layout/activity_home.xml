@@ -11,7 +11,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/home_et_search"
+            android:id="@+id/et_search_home"
             android:textSize="25dp"
             android:layout_weight="1"
             android:hint="món ăn, nhà hàng..."
@@ -28,6 +28,7 @@
 
     <Button
         android:id="@+id/home_bt_search_near"
+        android:onClick="searchNear"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:text="tìm quanh đây"

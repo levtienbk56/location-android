@@ -27,4 +27,14 @@ public class HomePresenter {
     public static void reloadListView(){
         activity.reloadListView();
     }
+
+    /**
+     * kiem tra toa do, dia chi cua user?
+     * @return
+     */
+    public String locateUser(){
+        //do something
+        //.......
+        return "";
+    }
 }

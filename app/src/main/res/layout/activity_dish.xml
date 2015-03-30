@@ -23,8 +23,10 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:text="gia cay"
+            android:layout_marginTop="5dp"
             android:id="@+id/tv_name_disk"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -33,41 +35,55 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/home_disk_name_tv"
-                android:textSize="20dp"
-                android:text="gia: 100$"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+
             <ImageButton
-                android:layout_gravity="right"
+                android:id="@+id/ib_like"
+                android:onClick="like"
                 android:scaleType="fitXY"
-                android:src="@drawable/heart"
-                android:layout_width="0dp"
-                android:layout_height="40dp" />
+                android:src="@drawable/like"
+                android:background="@null"
+                android:layout_width="45dp"
+                android:layout_height="45dp" />
+
             <TextView
+                android:layout_marginTop="10dp"
                 android:id="@+id/tv_like_count"
                 android:paddingRight="10dp"
-                android:text="like: 12"
-                android:textSize="20dp"
+                android:text="12"
+                android:textSize="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/home_disk_name_tv"
+                android:textSize="17dp"
+                android:text="gia: 100$"
                 android:gravity="right"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            </LinearLayout>
+
+        </LinearLayout>
 
 
         <TextView
             android:id="@+id/tv_address_dish"
-            android:textSize="20dp"
+            android:textSize="17dp"
             android:text="d/c: so 1 Dai Co Viet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
 
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:text="list comment:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <ListView
 
@@ -77,6 +93,6 @@
         android:id="@+id/home_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15dp" />
+        />
 
 </LinearLayout>

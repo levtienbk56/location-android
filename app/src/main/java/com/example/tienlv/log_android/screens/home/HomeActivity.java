@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.tienlv.log_android.R;
@@ -16,7 +18,7 @@ import com.example.tienlv.log_android.log.LogAPI;
 import com.example.tienlv.log_android.screens.dish.DishActivity;
 import com.example.tienlv.log_android.screens.search.SearchActivity;
 
-public class HomeActivity extends Activity implements IHomeActivity{
+public class HomeActivity extends Activity implements IHomeActivity {
 
     private static DishAdapter dishAdapter = null;
     private static ListView listView = null;
@@ -30,6 +32,8 @@ public class HomeActivity extends Activity implements IHomeActivity{
         setContentView(R.layout.activity_home);
 
         //========most important initialize ============//
+        initStartupReceiver();
+
         homePresenter = new HomePresenter(this);
         logAPI = new LogAPI(this);
         //==============================================//
@@ -52,15 +56,31 @@ public class HomeActivity extends Activity implements IHomeActivity{
 
     //action for search Button :)
     public void search(View v) {
+        EditText editText = (EditText) findViewById(R.id.et_search_home);
+        String s = editText.getText().toString();
+        editText.setText("");
+        //insert db
+        logAPI.insertLog(LogAPI.EVENT_SEARCH_KEY, s);
+
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+
+    //action for search Button :)
+    public void searchNear(View v) {
+        //insert db
+        logAPI.insertLog(LogAPI.EVENT_SEARCH_NEAR_BY, homePresenter.locateUser());
+
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
 
     public void detailDisk(int position) {
+        logAPI.insertLog(LogAPI.EVENT_VIEW_DETAIL_DISH, homePresenter.getDishList().get(position).getId());
+
         Intent intent = new Intent(getBaseContext(), DishActivity.class);
         intent.putExtra("EXTRA_DISH_NO", position);
         startActivity(intent);
-        Log.d("HomeActivity", "u click " + position);
     }
 
 
@@ -95,5 +115,13 @@ public class HomeActivity extends Activity implements IHomeActivity{
     public void reloadListView() {
         dishAdapter.notifyDataSetChanged();
         listView.setAdapter(dishAdapter);
+    }
+
+    private void initStartupReceiver() {
+
+        // Start receiver with the name StartupReceiver_Manual_Start
+        // Check AndroidManifest.xml file
+        getBaseContext().getApplicationContext().sendBroadcast(
+                new Intent("StartupReceiver_Manual_Start"));
     }
 }
