@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.tienlv.log_android.R;
@@ -34,7 +36,7 @@ public class SearchActivity extends FragmentActivity implements ActionBar.TabLis
         viewPager.setAdapter(tabsPagerAdapter);
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setCustomView(R.layout.actionbar_view);
+        actionBar.setCustomView(R.layout.actionbar_searchview);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 
         diskFragment = new DishFragment();
