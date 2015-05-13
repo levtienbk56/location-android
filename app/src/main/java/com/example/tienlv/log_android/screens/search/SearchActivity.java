@@ -1,14 +1,11 @@
 package com.example.tienlv.log_android.screens.search;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -37,8 +34,10 @@ public class SearchActivity extends FragmentActivity implements ActionBar.TabLis
         viewPager.setAdapter(tabsPagerAdapter);
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setCustomView(R.layout.actionbar_view);
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 
-        diskFragment = new DiskFragment();
+        diskFragment = new DishFragment();
         locationFragment = new LocationFragment();
         albumFragment = new AlbumFragment();
 
