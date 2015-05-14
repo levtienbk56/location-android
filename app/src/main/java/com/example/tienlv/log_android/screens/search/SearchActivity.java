@@ -86,8 +86,4 @@ public class SearchActivity extends FragmentActivity implements ActionBar.TabLis
 
     }
 
-    //test "click me" button
-    public void clickMe(View v){
-        Toast.makeText(this, "test frag", Toast.LENGTH_LONG).show();
-    }
 }

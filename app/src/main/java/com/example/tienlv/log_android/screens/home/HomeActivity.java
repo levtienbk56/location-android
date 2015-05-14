@@ -32,14 +32,15 @@ public class HomeActivity extends Activity implements IHomeActivity {
         setContentView(R.layout.activity_home);
 
         //========most important initialize ============//
-        initStartupReceiver();
+        //it dont need now,
+        //initStartupReceiver();
 
         homePresenter = new HomePresenter(this);
         logAPI = new LogAPI(this);
         //==============================================//
 
         //get trend dishs from server
-        requestDishs();
+        //requestDishs();
 
         //show list
         listView = (ListView) findViewById(R.id.home_lv);
