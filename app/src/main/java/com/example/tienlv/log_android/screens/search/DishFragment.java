@@ -5,20 +5,38 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.example.tienlv.log_android.R;
 
 
 public class DishFragment extends Fragment{
+    private static DishAdapter dishAdapter = null;
+    private static ListView listView = null;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_dish_tab, container,false);
 
-        return rootView;
-    }
 
-    public void clickMe(View v){
-        Toast.makeText(getActivity(), "test on fragment", Toast.LENGTH_LONG).show();
+
+        listView = (ListView) rootView.findViewById(R.id.lv_dish_tab);
+        dishAdapter = new DishAdapter(getActivity(), SearchPresenter.dishes);
+        listView.setAdapter(dishAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            }
+        });
+
+        //set action on click
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SearchPresenter.detailDish(position);
+            }
+        });
+        return rootView;
     }
 }

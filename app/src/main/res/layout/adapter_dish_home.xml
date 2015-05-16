@@ -20,7 +20,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_name_home_disk"
+            android:id="@+id/tv_name_search_dish"
             android:textSize="15dp"
             android:text="Thit cho"
             android:layout_width="match_parent"

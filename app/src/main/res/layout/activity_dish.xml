@@ -1,98 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="#f0f0f0"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content" >
 
-    <ImageView
-        android:scaleType="fitXY"
-        android:id="@+id/tv_avatar_dish"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_width="320dp"
-        android:layout_height="320dp" />
 
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/background_comment"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#f0f0f0"
+        android:orientation="vertical">
 
-        <TextView
-            android:text="gia cay"
-            android:layout_marginTop="5dp"
-            android:id="@+id/tv_name_disk"
-            android:textSize="20dp"
-            android:textStyle="bold"
+        <ImageView
+            android:id="@+id/image_avatar_detail_dish"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/background_test" />
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/ib_like"
-                android:onClick="like"
-                android:scaleType="fitXY"
-                android:src="@drawable/like"
-                android:background="@null"
-                android:layout_width="45dp"
-                android:layout_height="45dp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_comment"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_marginTop="10dp"
-                android:id="@+id/tv_like_count"
-                android:paddingRight="10dp"
-                android:text="12"
-                android:textSize="17dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_marginTop="10dp"
-                android:id="@+id/home_disk_name_tv"
-                android:textSize="17dp"
-                android:text="gia: 100$"
-                android:gravity="right"
+                android:id="@+id/tv_name_detail_dish"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="Bò Lúc Lắc"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/like_ico" />
+
+                <TextView
+                    android:id="@+id/tv_like_count_detail_dish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:text="7"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/comment_ico" />
+
+                <TextView
+                    android:id="@+id/tv_comment_count_detail_dish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:text="27"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/tv_price_detail_dish"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|right"
+                    android:text="20,000"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/currency_dollar_yellow" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_description_detail_dish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:maxLines="4"
+                android:text="trời se se lạnh mà được ăn đồ nướng thì tuyệt vời. ăn lần một lại muốn ăn lần hai."
+                android:textSize="13dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_comment"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:background="@drawable/location_icon3" />
+
+            <LinearLayout
+                android:id="@+id/ll_location_detail_dish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/tv_name_location_detail_dish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="Cafe 41 - For Everyone"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_address_detail_dish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="41 Nguyễn Khắc Như, Ba Đình, Hà Nội"
+                    android:textSize="15dp" />
+            </LinearLayout>
         </LinearLayout>
 
 
         <TextView
-            android:id="@+id/tv_address_dish"
-            android:textSize="17dp"
-            android:text="d/c: so 1 Dai Co Viet"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="list comment:" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <ListView
+            android:id="@+id/lv_detail_dish"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/background_comment" />
 
     </LinearLayout>
-
-    <TextView
-        android:layout_marginLeft="10dp"
-        android:text="list comment:"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <ListView
-
-        android:background="@drawable/background_comment"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:id="@+id/home_lv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
-</LinearLayout>
+</ScrollView>

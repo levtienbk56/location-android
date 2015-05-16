@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="#ffffff">
+    
+    
+    <ImageView
+        android:src="@drawable/background_test"
+        android:id="@+id/image_search_location"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+    <TextView
+        android:id="@+id/tv_name_search_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phở Tiến Oanh"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:singleLine="true"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/tv_address_search_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="17A Hoàng Hoa Thám, Hà Đông, Hà Nội"
+        android:gravity="right"
+        android:textSize="12dp"
+        android:singleLine="true"/>
+
+</LinearLayout>

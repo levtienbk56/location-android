@@ -40,7 +40,7 @@ public class ImageLoader {
         executorService = Executors.newFixedThreadPool(5);
     }
 
-    final int stub_id = R.drawable.stub;
+    final int stub_id = R.drawable.background_test;
 
     public void displayImage(String url, ImageView imageView, int requireSize) {
         REQUIRED_SIZE = requireSize;

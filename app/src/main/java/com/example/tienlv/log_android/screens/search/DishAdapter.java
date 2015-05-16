@@ -1,8 +1,7 @@
-package com.example.tienlv.log_android.screens.home;
+package com.example.tienlv.log_android.screens.search;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -42,26 +41,18 @@ public class DishAdapter extends BaseAdapter {
 
     public android.view.View getView(int position, android.view.View convertView, android.view.ViewGroup parent) {
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.adapter_dish_home, null);
+            convertView = inflater.inflate(R.layout.adapter_dish_search, null);
         TextView tvName = (TextView) convertView.findViewById(R.id.tv_name_search_dish);
-        TextView tvLike = (TextView) convertView.findViewById(R.id.tv_like_home_disk);
-        TextView tvLocation = (TextView) convertView.findViewById(R.id.tv_location_home_disk);
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.image_home_disk);
+        TextView tvDescription = (TextView) convertView.findViewById(R.id.tv_description_search_dish);
+        TextView tvAddress = (TextView) convertView.findViewById(R.id.tv_address_search_dish);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.image_search_dish);
 
         Dish dish = getItem(position);
         tvName.setText(dish.getName());
-        tvLike.setText("like: " + dish.getLikeCount());
-        tvLocation.setText(dish.getAddress());
+        tvAddress.setText(dish.getAddress());
+        tvDescription.setText(dish.getDescription());
 
-        Log.d("DiskAdapter", dish.getId() + ":" + dish.getName() + ":" + dish.getLikeCount());
-
-        //check image links
-        String url;
-        if (getItem(position).getImages().isEmpty()) {
-            url = "";
-        } else
-            url = arrayList.get(position).getImages().get(0);
-        imageLoader.displayImage(url, imageView, 100);  //100-requireSize
+        imageLoader.displayImage(getItem(position).getThumbnail(), imageView, 100);  //100-requireSize
 
         return convertView;
     }

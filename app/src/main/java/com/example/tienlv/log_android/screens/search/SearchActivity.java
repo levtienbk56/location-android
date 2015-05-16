@@ -6,10 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.tienlv.log_android.R;
 
@@ -28,11 +24,13 @@ public class SearchActivity extends FragmentActivity implements ActionBar.TabLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        //initialize
+        //init
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
         tabsPagerAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+        SearchPresenter presenter = new SearchPresenter(this);
 
+        //setting tab pages
         viewPager.setAdapter(tabsPagerAdapter);
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);

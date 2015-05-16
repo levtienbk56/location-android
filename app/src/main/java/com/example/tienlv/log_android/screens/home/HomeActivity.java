@@ -64,20 +64,21 @@ public class HomeActivity extends Activity implements IHomeActivity {
         logAPI.insertLog(LogAPI.EVENT_SEARCH_KEY, s);
 
         Intent intent = new Intent(this, SearchActivity.class);
+        intent.putExtra("searchKey", s);
         startActivity(intent);
     }
 
     //action for search Button :)
     public void searchNear(View v) {
         //insert db
-        logAPI.insertLog(LogAPI.EVENT_SEARCH_NEAR_BY, homePresenter.locateUser());
+        //logAPI.insertLog(LogAPI.EVENT_SEARCH_NEAR_BY, homePresenter.locateUser());
 
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
 
     public void detailDisk(int position) {
-        logAPI.insertLog(LogAPI.EVENT_VIEW_DETAIL_DISH, homePresenter.getDishList().get(position).getId());
+        //logAPI.insertLog(LogAPI.EVENT_VIEW_DETAIL_DISH, homePresenter.getDishList().get(position).getId());
 
         Intent intent = new Intent(getBaseContext(), DishActivity.class);
         intent.putExtra("EXTRA_DISH_NO", position);

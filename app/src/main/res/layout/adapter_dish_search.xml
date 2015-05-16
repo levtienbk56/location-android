@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image_search_dish"
+        android:layout_width="80dip"
+        android:layout_height="80dip"
+        android:src="@drawable/stub"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:layout_gravity="left|center_vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name_search_dish"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:text="Thit cho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_address_search_dish"
+            android:textColor="#a1000000"
+            android:gravity="right"
+            android:singleLine="true"
+            android:textSize="13dp"
+            android:text="142 Trần Duy Hưng, Hà Nội"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_description_search_dish"
+                android:textSize="10dp"
+                android:text="Ngon bổ rẻ, món ăn truyền thống Ngon bổ rẻ"
+                android:maxLines="3"
+                android:layout_gravity="center"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="20k"
+                android:textSize="20dp"
+                android:gravity="center|right"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:background="@drawable/currency_dollar_yellow"
+                android:layout_gravity="center"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
