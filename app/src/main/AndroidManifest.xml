@@ -43,14 +43,17 @@
             android:name=".screens.SearchActivityTest"
             android:label="@string/title_activity_search" >
         </activity>
-        <activity
-            android:name=".screens.dish.DishActivity">
+        <activity android:name=".screens.dish.DishActivity" >
+        </activity>
+        <activity android:name=".screens.location.LocationActivity" >
         </activity>
         <activity
-            android:name=".screens.location.LocationActivity" >
+            android:name=".screens.dish.GridViewActivity"
+            android:label="@string/title_activity_hello_grid" >
         </activity>
-
-
+        <activity
+            android:name=".screens.dish.FullSizeImageActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -1,11 +1,14 @@
 package com.example.tienlv.log_android.screens.dish;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,7 +18,6 @@ import com.example.tienlv.log_android.Utils.ImageLoader;
 import com.example.tienlv.log_android.log.LogAPI;
 import com.example.tienlv.log_android.model.Dish;
 import com.example.tienlv.log_android.model.Location;
-import com.example.tienlv.log_android.screens.location.LocationPresenter;
 
 public class DishActivity extends Activity implements IDishActivity {
     private DishPresenter presenter;
@@ -80,6 +82,9 @@ public class DishActivity extends Activity implements IDishActivity {
         //view location hyperlink
         viewLocationLink(location);
 
+        //view grid image
+        createGridImage();
+
         //TODO: show album image in grid view
         //...
 
@@ -91,7 +96,7 @@ public class DishActivity extends Activity implements IDishActivity {
      * make location as hyperlink, U can click to view detail restaurant/location
      * @param location
      */
-    public void viewLocationLink(Location location){
+    private void viewLocationLink(Location location){
         String id = location.getId();
         TextView tvName = (TextView) findViewById(R.id.tv_name_location_detail_dish);
         TextView tvAddress = (TextView) findViewById(R.id.tv_address_detail_dish);
@@ -107,9 +112,26 @@ public class DishActivity extends Activity implements IDishActivity {
                 DishPresenter.openLocationDetail();
             }
         });
-
     }
 
+    /**
+     * show list image of dish into grid view
+     */
+    private void createGridImage(){
+        GridView gridview = (GridView) findViewById(R.id.gv_image_detail_dish);
+        gridview.setAdapter(new GridViewAdapter(this));
+
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                showGridView();
+            }
+        });
+    }
+    private void showGridView(){
+        Intent intent = new Intent(this, GridViewActivity.class);
+        startActivity(intent);
+    }
 
 
        /*

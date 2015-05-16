@@ -7,5 +7,10 @@
     <string name="title_activity_search">SearchActivity</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_disk">DiskActivity</string>
+    <string name="title_activity_hello_grid">HelloGrid</string>
+
+    <string name="title_activity_full_size_image">FullSizeImageActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>
