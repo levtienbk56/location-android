@@ -56,15 +56,12 @@ public class HomeActivity extends Activity implements IHomeActivity {
     }
 
     //action for search Button :)
+
     public void search(View v) {
-        EditText editText = (EditText) findViewById(R.id.et_search_home);
-        String s = editText.getText().toString();
-        editText.setText("");
         //insert db
-        logAPI.insertLog(LogAPI.EVENT_SEARCH_KEY, s);
+        //logAPI.insertLog(LogAPI.EVENT_SEARCH_KEY, s);
 
         Intent intent = new Intent(this, SearchActivity.class);
-        intent.putExtra("searchKey", s);
         startActivity(intent);
     }
 

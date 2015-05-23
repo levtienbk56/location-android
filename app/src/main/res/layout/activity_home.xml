@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--
     <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
@@ -25,7 +26,7 @@
             android:layout_height="45sp"
             android:onClick="search" />
     </LinearLayout>
-
+-->
     <Button
         android:id="@+id/home_bt_search_near"
         android:onClick="searchNear"
