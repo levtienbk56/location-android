@@ -40,6 +40,14 @@ public class Dish extends Item{
         this.description = description;
         this.thumbnail = thumbnail;
         this.name = name;
+        this.images = new ArrayList<>();
+    }
+
+    public Dish (String name, int likeCount, String address){
+        this.name = name;
+        this.address = address;
+        this.likeCount  = likeCount;
+        this.images = new ArrayList<>();
     }
 
     public void show(){

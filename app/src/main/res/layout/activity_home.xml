@@ -1,45 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/et_search_home"
-            android:textSize="25dp"
-            android:layout_weight="1"
-            android:hint="món ăn, nhà hàng..."
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/home_bt_search"
-            android:layout_marginRight="10dp"
-            android:layout_width="45sp"
-            android:layout_height="45sp"
-            android:onClick="search" />
-    </LinearLayout>
--->
-    <Button
-        android:id="@+id/home_bt_search_near"
-        android:onClick="searchNear"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:text="tìm quanh đây"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
     <ListView
-        android:id="@+id/home_lv"
+        android:id="@+id/lv_search_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="15dp" />
+        android:layout_height="match_parent" />
 
-</LinearLayout>
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fab_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:src="@drawable/search_icon_white_th"
+        android:scaleType="fitCenter"
+        fab:fab_colorNormal="#ffff0019"
+        fab:fab_colorPressed="#ff860300"
+        fab:fab_colorRipple="#ffffc605" />
+</FrameLayout>
