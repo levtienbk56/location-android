@@ -10,16 +10,18 @@
         android:background="#f0f0f0"
         android:orientation="vertical">
 
+
         <ImageView
+            android:src="@drawable/background_test"
             android:id="@+id/image_avatar_detail_dish"
+            android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="300dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:scaleType="centerCrop"
-            android:background="@drawable/background_test" />
+            />
+
 
         <LinearLayout
             android:layout_width="match_parent"

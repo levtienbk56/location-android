@@ -39,22 +39,27 @@ public class SearchPresenter {
 
 
         //test listview with temp data
-        Dish dish = new Dish("d0001", "bò lúc lắc", "36 Lê Thanh Nghị, Hà nội", "ăn rồi lại muốn quay lại",  "");
+        Dish dish = new Dish("d0001", "Phở & lẩu bò", "36 Lê Thanh Nghị, Hà nội", "ăn rồi lại muốn quay lại",  "");
+        Dish dish1 = new Dish("d0002", "Phở Thìn", "Lò Đúc, quận Hai Bà Trưng, Hà Nội", "bát to, nhiều thịt, nên giá cũng đắt",  "");
+        Dish dish2 = new Dish("d0001", "Phở  Bò Huế", "số 2, đường Láng, Hà nội", "quán ngay ngã tư sở. địa điểm đông khác nên hơi chật chội",  "");
+        Dish dish3 = new Dish("d0001", "phở Bò Huế", "36 Võ thị Sáu, tp.Hồ CHí Minh", "ăn rồi lại muốn quay lại",  "");
         dishes.add(dish);
-        dishes.add(dish);
-        dishes.add(dish);
-        dishes.add(dish);
-        dishes.add(dish);
-        dishes.add(dish);
-        dishes.add(dish);
+        dishes.add(dish1);
+        dishes.add(dish2);
+        dishes.add(dish3);
+        dishes.add(dish3);
+        dishes.add(dish1);
+        dishes.add(dish2);
 
         //test listview with temp data
         Location location = new Location("l0001", "Phở cuốn Hương Mai", "27 Ngũ Xã, Quận Ba Đình, Hà Nội", "món ngon, không gian thoáng đãng", "");
+        Location location1 = new Location("l0001", "Phở Bò 36", "36 Lê Thanh Nghị, Hà nội", "món ngon, không gian thoáng đãng", "");
+        Location location2 = new Location("l0001", "cafe BrotherHood", "số 2, đường Láng, Hà nội", "món ngon, không gian thoáng đãng", "");
         locations.add(location);
-        locations.add(location);
-        locations.add(location);
-        locations.add(location);
-        locations.add(location);
+        locations.add(location1);
+        locations.add(location2);
+        locations.add(location1);
+        locations.add(location1);
         locations.add(location);
         locations.add(location);
     }
