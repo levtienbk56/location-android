@@ -1,6 +1,7 @@
 package com.example.tienlv.log_android.screens.home;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -41,11 +42,13 @@ public class HomeActivity extends Activity implements IHomeActivity {
         reloadListView();
     }
 
-
-
     public void reloadListView() {
         dishAdapter.notifyDataSetChanged();
         listView.setAdapter(dishAdapter);
+    }
+
+    public void openSearch(View v){
+        presenter.openSearch();
     }
 
     private void initStartupReceiver() {

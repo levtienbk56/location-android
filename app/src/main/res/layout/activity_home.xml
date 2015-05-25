@@ -15,9 +15,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
-        android:src="@drawable/search_icon_white_th"
+        android:src="@drawable/ic_search_icon_white_th"
         android:scaleType="fitCenter"
         fab:fab_colorNormal="#ffff0019"
         fab:fab_colorPressed="#ff860300"
-        fab:fab_colorRipple="#ffffc605" />
+        fab:fab_colorRipple="#ffffc605"
+        android:onClick="openSearch"/>
 </FrameLayout>

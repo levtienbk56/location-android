@@ -64,7 +64,7 @@ public class HomePresenter {
     /**
      * action for search Button :)
      */
-    public void search(View v) {
+    public void openSearch() {
         //insert db
         //logAPI.insertLog(LogAPI.EVENT_SEARCH_KEY, s);
 
