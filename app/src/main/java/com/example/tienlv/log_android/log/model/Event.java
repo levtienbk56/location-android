@@ -3,14 +3,14 @@ package com.example.tienlv.log_android.log.model;
 /**
  * Created by tienlv on 1/26/15.
  */
-public class EventModel extends AbstractModel {
+public class Event extends AbstractModel {
     private String name;
 
-    public EventModel(int id, String name){
+    public Event(int id, String name){
         this._id = id;
         this.name = name;
     }
-    public EventModel(){
+    public Event(){
 
     }
 

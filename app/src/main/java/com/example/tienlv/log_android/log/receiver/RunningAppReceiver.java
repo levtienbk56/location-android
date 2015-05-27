@@ -14,14 +14,11 @@ import android.os.PowerManager;
 import android.util.Log;
 
 import com.example.tienlv.log_android.log.LogAPI;
-import com.example.tienlv.log_android.log.MySQLiteOpenHelper;
-import com.example.tienlv.log_android.log.model.EventModel;
-import com.example.tienlv.log_android.log.model.LogModel;
 
 
-public class CheckRunningApplicationReceiver extends BroadcastReceiver {
+public class RunningAppReceiver extends BroadcastReceiver {
 
-    public final String TAG = "CRAR"; // CheckRunningApplicationReceiver
+    public final String TAG = "RunningAppReceiver";
     PackageManager packageManager;
     private LogAPI logAPI;
 

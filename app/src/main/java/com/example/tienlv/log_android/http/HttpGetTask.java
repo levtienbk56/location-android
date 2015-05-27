@@ -1,6 +1,8 @@
 package com.example.tienlv.log_android.http;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -35,9 +37,6 @@ public class HttpGetTask extends HttpTask {
             reader.close();
 
             result = out.toString();
-            //print result
-            Log.d(TAG, result);
-
             return result;
         } catch (Exception ex) {
             ex.printStackTrace();

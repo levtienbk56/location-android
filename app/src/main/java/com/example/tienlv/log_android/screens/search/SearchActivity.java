@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.tienlv.log_android.R;
 
@@ -15,9 +18,7 @@ public class SearchActivity extends FragmentActivity implements ActionBar.TabLis
     private ViewPager viewPager;
     private ActionBar actionBar;
     private String[] tabs = {"Dish", "Location", "Album"};
-    public static Fragment diskFragment;
-    public static Fragment locationFragment;
-    public static Fragment albumFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +26,11 @@ public class SearchActivity extends FragmentActivity implements ActionBar.TabLis
         setContentView(R.layout.activity_search);
 
         //init
+        SearchPresenter presenter = new SearchPresenter(this);
+
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
         tabsPagerAdapter = new TabsPagerAdapter(getSupportFragmentManager());
-        SearchPresenter presenter = new SearchPresenter(this);
 
         //setting tab pages
         viewPager.setAdapter(tabsPagerAdapter);
@@ -37,9 +39,7 @@ public class SearchActivity extends FragmentActivity implements ActionBar.TabLis
         actionBar.setCustomView(R.layout.actionbar_searchview);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 
-        diskFragment = new DishFragment();
-        locationFragment = new LocationFragment();
-        albumFragment = new AlbumFragment();
+
 
         //adding tabs
         for (String tab : tabs) {
@@ -65,7 +65,19 @@ public class SearchActivity extends FragmentActivity implements ActionBar.TabLis
 
             }
         });
+
+        Button bt = (Button)findViewById(R.id.bt_actionbar_search);
+        bt.setOnClickListener(onClickSearch);
+
     }
+
+    private View.OnClickListener onClickSearch = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            EditText et = (EditText) findViewById(R.id.et_clearable);
+            SearchPresenter.loadData(et.getText().toString().trim());
+        }
+    };
 
     //when tab selected -> change view page
     @Override

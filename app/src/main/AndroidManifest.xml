@@ -23,7 +23,7 @@
                 <action android:name="StartupReceiver_Manual_Start" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".log.receiver.CheckRunningApplicationReceiver" />
+        <receiver android:name=".log.receiver.RunningAppReceiver" />
         <receiver android:name=".log.receiver.ServerUploadReceiver" />
 
 

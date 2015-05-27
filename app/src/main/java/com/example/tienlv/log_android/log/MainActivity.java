@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.example.tienlv.log_android.R;
 import com.example.tienlv.log_android.http.HttpGetTask;
 import com.example.tienlv.log_android.http.HttpTask;
-import com.example.tienlv.log_android.log.model.EventModel;
+import com.example.tienlv.log_android.log.model.Event;
 import com.example.tienlv.log_android.screens.SearchActivityTest;
 
 import java.util.ArrayList;
@@ -82,7 +82,7 @@ public class MainActivity extends Activity {
         public void onClick(View view) {
             String string = etName.getText().toString();
             if (string.isEmpty()) return;
-            EventModel event = new EventModel();
+            Event event = new Event();
             event.setName(string);
 
             dataHelper.insertEvent(event);
@@ -102,7 +102,7 @@ public class MainActivity extends Activity {
         public void onClick(View view) {
             tvResult.setText("");
 
-            ArrayList<EventModel> arrayList = dataHelper.getEventAll();
+            ArrayList<Event> arrayList = dataHelper.getEventAll();
             int i;
             for (i = 0; i < arrayList.size(); i++) {
                 tvResult.append("-" + arrayList.get(i).get_id() + " " + arrayList.get(i).getName() + "\n");

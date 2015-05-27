@@ -2,6 +2,7 @@ package com.example.tienlv.log_android.screens.search;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,8 @@ import com.example.tienlv.log_android.R;
 
 
 public class DishFragment extends Fragment{
-    private static DishAdapter dishAdapter = null;
-    private static ListView listView = null;
+    private static DishAdapter dishAdapter;
+    private static ListView listView ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,4 +40,11 @@ public class DishFragment extends Fragment{
         });
         return rootView;
     }
+
+    public static void reloadListView() {
+        dishAdapter.notifyDataSetChanged();
+        Log.d("DishFragment", "dish count: "+SearchPresenter.dishes.size());
+        listView.setAdapter(dishAdapter);
+    }
+
 }

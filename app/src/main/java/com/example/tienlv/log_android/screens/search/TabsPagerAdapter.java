@@ -15,11 +15,11 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int i) {
         switch (i) {
             case 0:
-                return SearchActivity.diskFragment;
+                return SearchPresenter.diskFragment;
             case 1:
-                return SearchActivity.locationFragment;
+                return SearchPresenter.locationFragment;
             case 2:
-                return SearchActivity.albumFragment;
+                return SearchPresenter.albumFragment;
         }
         return null;
     }

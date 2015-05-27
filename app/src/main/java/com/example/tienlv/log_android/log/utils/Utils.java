@@ -1,11 +1,11 @@
-package com.example.tienlv.log_android.log.model;
+package com.example.tienlv.log_android.log.utils;
 
 import java.util.Calendar;
 
 /**
  * Created by tienlv on 3/30/15.
  */
-public class Utils {
+public class  Utils {
     /**
      * get current time
      *

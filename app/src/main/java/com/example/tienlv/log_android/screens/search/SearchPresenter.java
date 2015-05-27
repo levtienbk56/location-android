@@ -1,18 +1,25 @@
 package com.example.tienlv.log_android.screens.search;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.util.Log;
 
 import com.example.tienlv.log_android.model.Dish;
 import com.example.tienlv.log_android.model.Location;
 import com.example.tienlv.log_android.screens.dish.DishActivity;
 import com.example.tienlv.log_android.screens.location.LocationActivity;
+import com.example.tienlv.log_android.screens.search.http.AnalyzeDishData;
 
 import java.util.ArrayList;
 
 public class SearchPresenter {
+    private static final String  TAG = "SEARCH_PRESENTER";
     private static SearchActivity activity;
     public static ArrayList<Dish> dishes;
     public static ArrayList<Location> locations;
+    public static Fragment diskFragment;
+    public static Fragment locationFragment;
+    public static Fragment albumFragment;
 
     // <editor-fold desc=" Getter & Setter">
     public static ArrayList<Dish> getDishes() {
@@ -34,10 +41,45 @@ public class SearchPresenter {
 
     public SearchPresenter(SearchActivity activity){
         this.activity = activity;
+
+        diskFragment = new DishFragment();
+        locationFragment = new LocationFragment();
+        albumFragment = new AlbumFragment();
+
         dishes = new ArrayList<>();
         locations = new ArrayList<>();
 
+        //loadData("ngon");
+        //testData();
+    }
 
+    //<editor-fold desc = "navigate to activity"
+    public static void detailDish(int position){
+        Intent intent = new Intent(activity, DishActivity.class);
+        intent.putExtra("EXTRA_DISH_ID", dishes.get(position).getId());
+        activity.startActivity(intent);
+    }
+    public static void detailLocation(int position){
+        Intent intent = new Intent(activity, LocationActivity.class);
+        intent.putExtra("EXTRA_LOCATION_ID", locations.get(position).getId());
+        activity.startActivity(intent);
+    }
+    //</editor-fold>
+
+    public static void loadData(String keyword){
+        Log.d(TAG, "keyword: " +keyword);
+        AnalyzeDishData task = new AnalyzeDishData();
+        task.execute("http://52.74.170.49:8080/foodie/search/query?q=" + keyword);
+        reloadView();
+    }
+
+    public static void reloadView(){
+        DishFragment.reloadListView();
+        LocationFragment.reloadListView();
+    }
+
+    //<editor-fold desc = "test with temp data"
+    private void testData(){
         //test listview with temp data
         Dish dish = new Dish("d0001", "Phở & lẩu bò", "36 Lê Thanh Nghị, Hà nội", "ăn rồi lại muốn quay lại",  "");
         Dish dish1 = new Dish("d0002", "Phở Thìn", "Lò Đúc, quận Hai Bà Trưng, Hà Nội", "bát to, nhiều thịt, nên giá cũng đắt",  "");
@@ -63,22 +105,6 @@ public class SearchPresenter {
         locations.add(location);
         locations.add(location);
     }
-
-    //<editor-fold desc = "navigate to activity"
-    public static void detailDish(int position){
-        Intent intent = new Intent(activity, DishActivity.class);
-        intent.putExtra("EXTRA_DISH_ID", dishes.get(position).getId());
-        activity.startActivity(intent);
-    }
-    public static void detailLocation(int position){
-        Intent intent = new Intent(activity, LocationActivity.class);
-        intent.putExtra("EXTRA_LOCATION_ID", locations.get(position).getId());
-        activity.startActivity(intent);
-    }
     //</editor-fold>
 
-    public static void loadData(){
-        //TODO: load data from internet, when click SearchButton. use http task
-        //..
-    }
 }

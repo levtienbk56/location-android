@@ -43,12 +43,10 @@ public class LocationAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.adapter_location_search, null);
         TextView tvName = (TextView) convertView.findViewById(R.id.tv_name_search_location);
-        TextView tvAddress = (TextView) convertView.findViewById(R.id.tv_address_search_location);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.image_search_location);
 
         Location location = getItem(position);
         tvName.setText(location.getName());
-        tvAddress.setText(location.getAddress());
 
         imageLoader.displayImage(getItem(position).getThumbnail(), imageView, 100);  //100-requireSize
 

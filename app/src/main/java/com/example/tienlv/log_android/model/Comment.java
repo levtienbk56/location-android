@@ -1,11 +1,6 @@
 package com.example.tienlv.log_android.model;
 
 /**
- * Created by Tienlv on 5/16/2015.
- */
-
-
-/**
  * classify into {dish, location}
  * check by "type" att
  */

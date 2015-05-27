@@ -3,19 +3,19 @@ package com.example.tienlv.log_android.log.model;
 /**
  * Created by tienlv on 1/26/15.
  */
-public class LogModel extends AbstractModel {
+public class Log extends AbstractModel {
     private String eventName;
     private String date;
     private String value;
 
 
-    public LogModel(int _id, String eventName, String date, String value) {
+    public Log(int _id, String eventName, String date, String value) {
         this._id = _id;
         this.eventName = eventName;
         this.date = date;
         this.value = value;
     }
-    public LogModel(){}
+    public Log(){}
 
     public int get_id() {
         return _id;

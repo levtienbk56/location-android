@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.tienlv.log_android.log.LogAPI;
 import com.example.tienlv.log_android.R;
-import com.example.tienlv.log_android.log.model.LogModel;
+import com.example.tienlv.log_android.log.model.Log;
 
 import java.util.ArrayList;
 
@@ -44,7 +44,7 @@ public class SearchActivityTest extends Activity {
         @Override
         public void onClick(View view) {
             tvLog.setText("");
-            ArrayList<LogModel> arrayList = logAPI.getAllLog();
+            ArrayList<Log> arrayList = logAPI.getAllLog();
             int i;
             for (i = 0; i < arrayList.size(); i++) {
                 tvLog.append("-" + arrayList.get(i).get_id() + " "

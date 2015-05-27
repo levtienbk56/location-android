@@ -44,12 +44,10 @@ public class DishAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.adapter_dish_search, null);
         TextView tvName = (TextView) convertView.findViewById(R.id.tv_name_search_dish);
         TextView tvDescription = (TextView) convertView.findViewById(R.id.tv_description_search_dish);
-        TextView tvAddress = (TextView) convertView.findViewById(R.id.tv_address_search_dish);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.image_search_dish);
 
         Dish dish = getItem(position);
         tvName.setText(dish.getName());
-        tvAddress.setText(dish.getAddress());
         tvDescription.setText(dish.getDescription());
 
         imageLoader.displayImage(getItem(position).getThumbnail(), imageView, 100);  //100-requireSize

@@ -19,7 +19,7 @@ public class StartupReceiver extends BroadcastReceiver{
         final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         try{
             //start for checking running app
-            Intent i = new Intent(context, CheckRunningApplicationReceiver.class);
+            Intent i = new Intent(context, RunningAppReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, startupID, i, 0);
             alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), LogAPI.checkStep, pendingIntent);
 

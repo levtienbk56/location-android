@@ -19,20 +19,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <TextView
             android:id="@+id/tv_name_search_dish"
             android:textSize="15dp"
             android:textStyle="bold"
             android:text="Thit cho"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:textColor="#93000000"
-            android:textSize="13dp"
-            android:id="@+id/tv_address_search_dish"
-            android:gravity="right"
-            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -45,11 +36,13 @@
                 android:textSize="10dp"
                 android:text="Ngon bổ rẻ, món ăn truyền thống Ngon bổ rẻ"
                 android:maxLines="3"
+                android:layout_margin="10dp"
                 android:layout_gravity="center"
                 android:layout_weight="3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
+            <!--
             <TextView
                 android:text="20k"
                 android:textSize="20dp"
@@ -62,6 +55,7 @@
                 android:layout_gravity="center"
                 android:layout_width="25dp"
                 android:layout_height="25dp" />
+            -->
 
         </LinearLayout>
 
