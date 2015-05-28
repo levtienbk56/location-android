@@ -3,52 +3,74 @@ package com.example.tienlv.log_android.screens.location;
 import android.app.Activity;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.tienlv.log_android.R;
 import com.example.tienlv.log_android.Utils.ImageLoader;
 import com.example.tienlv.log_android.log.LogAPI;
-import com.example.tienlv.log_android.model.Dish;
 import com.example.tienlv.log_android.model.Location;
-import com.example.tienlv.log_android.screens.home.HomePresenter;
 
 public class LocationActivity extends Activity implements ILocationActivity {
-    private LocationPresenter presenter;
     LogAPI logAPI;
+    public DishOLAdapter dishOLAdapter;
+    public ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         //init
-        presenter = new LocationPresenter(this);
+        LocationPresenter presenter = new LocationPresenter(this);
         //logAPI = new LogAPI(this);
 
+        listView = (ListView) findViewById(R.id.lv_dish_ol_detail_location);
+        dishOLAdapter = new DishOLAdapter(this, LocationPresenter.dishOLs);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                LocationPresenter.detailDishOL(position);
+            }
+        });
 
-        //get locationID from previous activity
-        Bundle extra = getIntent().getExtras();
-        String locationId = extra.getString("EXTRA_LOCATION_ID");
-        LocationPresenter.loadLocationData(locationId);
-        Log.d("LocationActivity", "locationId: " + locationId);
     }
 
     public void reloadView() {
+        Location loc = LocationPresenter.location;
 
+        //how to view image
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+        ImageView imageView = (ImageView) findViewById(R.id.image_avatar_detail_location);
+
+        //load image avatar dish
+        if (!loc.getThumbnail().equals("")){
+            ImageLoader imageLoader = new ImageLoader(this);
+            imageLoader.displayImage(loc.getThumbnail() , imageView, width);
+        }
+
+        TextView tvName = (TextView) findViewById(R.id.tv_name_detail_location);
+        TextView tvAddress = (TextView) findViewById(R.id.tv_address_detail_location);
+        TextView tvTime = (TextView) findViewById(R.id.tv_time_detail_location);
+        TextView tvPhone = (TextView) findViewById(R.id.tv_phone_detail_location);
+        TextView tvDes = (TextView) findViewById(R.id.tv_description_detail_location);
+
+        tvName.setText(loc.getName());
+        tvAddress.setText(loc.getAddress());
+        tvTime.setText("mở cửa: " + loc.getOpenTime() + "-" + loc.getCloseTime());
+        tvPhone.setText("phone: " + loc.getTel());
+        tvDes.setText(loc.getDescription());
+
+        //reload listView
+        dishOLAdapter.notifyDataSetChanged();
+        listView.setAdapter(dishOLAdapter);
     }
-
-    /*
-    public void like(View v){
-        //change image
-        ImageButton ib = (ImageButton) findViewById(R.id.ib_like);
-        ib.setImageResource(R.drawable.heart);
-
-        //insert db
-        logAPI.insertLog(LogAPI.EVENT_LIKE_DISH, presenter.getDish().getId());
-    }
-    */
 
 }

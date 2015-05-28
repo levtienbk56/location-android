@@ -1,39 +1,51 @@
 package com.example.tienlv.log_android.screens.location;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 
-import com.example.tienlv.log_android.model.Dish;
+import com.example.tienlv.log_android.model.DishOL;
 import com.example.tienlv.log_android.model.Location;
+import com.example.tienlv.log_android.screens.dish_on_location.DishOLActivity;
+import com.example.tienlv.log_android.screens.location.http.AnalyzeDishData;
+
 
 import java.util.ArrayList;
 
 public class LocationPresenter {
-    private static LocationActivity activity;
-    private static Location location;
-    public static ArrayList<Dish> dishes = new ArrayList<>();
+    public static LocationActivity activity;
+    public static Location location;
+    public static ArrayList<DishOL> dishOLs;
 
     public LocationPresenter(LocationActivity activity) {
-        this.activity = activity;
+        LocationPresenter.activity = activity;
+        location = new Location();
+        dishOLs = new ArrayList<>();
 
-        //for test
-        Dish dish = new Dish("d0001", "bò lúc lắc", "36 Lê Thanh Nghị, Hà nội", "ăn rồi lại muốn quay lại",  "");
-        dishes.add(dish);
-        dishes.add(dish);
-        dishes.add(dish);
-        dishes.add(dish);
-        dishes.add(dish);
-        dishes.add(dish);
+        //get dishId from previous activity
+        Bundle extra = LocationPresenter.activity.getIntent().getExtras();
+        String locationId = extra.getString("EXTRA_LOCATION_ID");
+        Log.d("Location", "Location ID: " + locationId);
+        loadDishData(locationId);
     }
+
+
+    //<editor-fold desc="load dish's detail data from Internet">
+    public void loadDishData(String locationId) {
+        AnalyzeDishData task = new AnalyzeDishData();
+        task.execute("http://52.74.170.49:8080/foodie/location/details/id?id=" + locationId);
+    }
+    //</editor-fold>
 
     public static void reloadView() {
         activity.reloadView();
     }
 
-    public static void loadLocationData(String locationID){
-        //TODO: load location/restaurant data from internet
-        //..
-
-        //reload view
-        activity.reloadView();
+    //<editor-fold desc= "jump to dish on location detail screen"
+    public static void detailDishOL(int position) {
+        Intent intent = new Intent(activity, DishOLActivity.class);
+        intent.putExtra("EXTRA_DISH_OL_ID", dishOLs.get(position).getId());
+        activity.startActivity(intent);
     }
+    //</editor-fold>
 }

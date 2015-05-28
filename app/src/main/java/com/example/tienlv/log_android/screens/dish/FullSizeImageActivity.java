@@ -1,18 +1,12 @@
 package com.example.tienlv.log_android.screens.dish;
 
-import com.example.tienlv.log_android.screens.dish.util.SystemUiHider;
-
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.example.tienlv.log_android.R;
+import com.example.tienlv.log_android.screens.dish.util.SystemUiHider;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

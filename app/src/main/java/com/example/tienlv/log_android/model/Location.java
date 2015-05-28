@@ -11,31 +11,37 @@ public class Location extends Item{
     private String tel;
     private String openTime;
     private String closeTime;
-    private ArrayList<Dish> dishs;
+    private ArrayList<DishOL> dishOLs;
     private ArrayList<String> images;
-    private ArrayList<Comment> comments;
-    private ArrayList<Like> likes;
 
     public Location(){
+        super();
         address = "";
         city = "";
         tel = "";
         openTime = "";
         closeTime = "";
-        dishs = new ArrayList<>();
+        dishOLs = new ArrayList<>();
         images = new ArrayList<>();
-        comments = new ArrayList<>();
-        likes = new ArrayList<>();
     }
-    //for testing
-    //search item
-    public Location(String id, String name, String address, String description, String thumbnail){
-        this.id = id;
-        this.name = name;
+
+    public Location (String id, String name, String description, String thumbnail, String address){
+        super(id, name, description, "location", thumbnail, "");
         this.address = address;
-        this.description = description;
-        this.thumbnail = thumbnail;
+        dishOLs = new ArrayList<>();
+        images = new ArrayList<>();
     }
+
+    public void show(){
+        Log.d("location Detail", "===========================================================================");
+        Log.d("location Detail", this.id);
+        Log.d("location Detail", this.name);
+        Log.d("location Detail", this.address);
+        Log.d("location Detail", this.thumbnail);
+        Log.d("location Detail", "===========================================================================");
+    }
+
+    //<editor-fold desc = "getter & setter">
 
     public String getAddress() {
         return address;
@@ -77,12 +83,12 @@ public class Location extends Item{
         this.closeTime = closeTime;
     }
 
-    public ArrayList<Dish> getDishs() {
-        return dishs;
+    public ArrayList<DishOL> getDishOLs() {
+        return dishOLs;
     }
 
-    public void setDishs(ArrayList<Dish> dishs) {
-        this.dishs = dishs;
+    public void setDishOLs(ArrayList<DishOL> dishOLs) {
+        this.dishOLs = dishOLs;
     }
 
     public ArrayList<String> getImages() {
@@ -93,12 +99,5 @@ public class Location extends Item{
         this.images = images;
     }
 
-    public void show(){
-        Log.d("location Detail", "===========================================================================");
-        Log.d("location Detail", this.id);
-        Log.d("location Detail", this.name);
-        Log.d("location Detail", this.address);
-        Log.d("location Detail", this.thumbnail);
-        Log.d("location Detail", "===========================================================================");
-    }
+    //</editor-fold>
 }

@@ -21,7 +21,6 @@ public class LocationFragment extends Fragment{
 
         listView = (ListView) rootView.findViewById(R.id.lv_location_tab);
         locationAdapter = new LocationAdapter(getActivity(), SearchPresenter.locations);
-        listView.setAdapter(locationAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

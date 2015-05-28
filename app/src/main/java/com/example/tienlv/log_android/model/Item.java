@@ -8,8 +8,28 @@ public abstract class Item {
     protected String thumbnail;
     protected String createBy;
 
+    //<editor-fold desc=" ---- constructor ------">
+
     public Item(){
+        id = "";
+        name = "";
+        description = "";
+        type = "";
+        thumbnail = "";
+        createBy = "";
     }
+
+    protected Item(String id, String name, String description, String type, String thumbnail, String createBy) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.thumbnail = thumbnail;
+        this.createBy = createBy;
+    }
+    //</editor-fold >
+
+    //<editor-fold desc=" ------ getter & setter ----------">
 
     public String getId() {
         return id;
@@ -58,4 +78,5 @@ public abstract class Item {
     public void setCreateBy(String createBy) {
         this.createBy = createBy;
     }
+    //</editor-fold >
 }

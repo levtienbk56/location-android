@@ -50,11 +50,6 @@ public class DishAdapter extends BaseAdapter {
 
         Dish dish = getItem(position);
         tvName.setText(dish.getName());
-        tvLike.setText("like: " + dish.getLikeCount());
-        tvLocation.setText(dish.getAddress());
-
-        Log.d("DiskAdapter", dish.getId() + ":" + dish.getName() + ":" + dish.getLikeCount());
-
         //check image links
         String url;
         if (getItem(position).getImages().isEmpty()) {

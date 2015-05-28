@@ -25,24 +25,6 @@ public class HomePresenter {
         //it dont need now,
         //initStartupReceiver();
 
-
-        //temp data in list view
-        Dish dish1 =  new Dish("Chè tự chọn Bách Khoa", 12, "121 Tạ QUang Bửu, p.Bách Khoa, Hai Bà Trưng");
-        Dish dish2=  new Dish("Chè tự chọn Bách Khoa", 12, "121 Tạ QUang Bửu, p.Bách Khoa, Hai Bà Trưng");
-        Dish dish3 =  new Dish("Chè tự chọn Bách Khoa", 12, "121 Tạ QUang Bửu, p.Bách Khoa, Hai Bà Trưng");
-        Dish dish4 =  new Dish("Chè tự chọn Bách Khoa", 12, "121 Tạ QUang Bửu, p.Bách Khoa, Hai Bà Trưng");
-        Dish dish5 =  new Dish("Chè tự chọn Bách Khoa", 12, "121 Tạ QUang Bửu, p.Bách Khoa, Hai Bà Trưng");
-        Dish dish6 =  new Dish("Chè tự chọn Bách Khoa", 12, "121 Tạ QUang Bửu, p.Bách Khoa, Hai Bà Trưng");
-        Dish dish7 =  new Dish("Chè tự chọn Bách Khoa", 12, "121 Tạ QUang Bửu, p.Bách Khoa, Hai Bà Trưng");
-        Dish dish8 =  new Dish("Chè tự chọn Bách Khoa", 12, "121 Tạ QUang Bửu, p.Bách Khoa, Hai Bà Trưng");
-        arrayList.add(dish1);
-        arrayList.add(dish2);
-        arrayList.add(dish3);
-        arrayList.add(dish4);
-        arrayList.add(dish5);
-        arrayList.add(dish6);
-        arrayList.add(dish7);
-        arrayList.add(dish8);
     }
 
     public static void addDish(Dish dish){

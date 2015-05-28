@@ -14,7 +14,7 @@ import com.example.tienlv.log_android.model.Location;
 import java.util.ArrayList;
 
 public class LocationAdapter extends BaseAdapter {
-    private Activity activity;
+    protected Activity activity;
     private LayoutInflater inflater = null;
     private ArrayList<Location> arrayList;
     public ImageLoader imageLoader;

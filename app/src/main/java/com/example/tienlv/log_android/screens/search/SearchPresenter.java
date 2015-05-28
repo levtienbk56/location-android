@@ -70,7 +70,6 @@ public class SearchPresenter {
         Log.d(TAG, "keyword: " +keyword);
         AnalyzeDishData task = new AnalyzeDishData();
         task.execute("http://52.74.170.49:8080/foodie/search/query?q=" + keyword);
-        reloadView();
     }
 
     public static void reloadView(){
@@ -81,10 +80,10 @@ public class SearchPresenter {
     //<editor-fold desc = "test with temp data"
     private void testData(){
         //test listview with temp data
-        Dish dish = new Dish("d0001", "Phở & lẩu bò", "36 Lê Thanh Nghị, Hà nội", "ăn rồi lại muốn quay lại",  "");
-        Dish dish1 = new Dish("d0002", "Phở Thìn", "Lò Đúc, quận Hai Bà Trưng, Hà Nội", "bát to, nhiều thịt, nên giá cũng đắt",  "");
-        Dish dish2 = new Dish("d0001", "Phở  Bò Huế", "số 2, đường Láng, Hà nội", "quán ngay ngã tư sở. địa điểm đông khác nên hơi chật chội",  "");
-        Dish dish3 = new Dish("d0001", "phở Bò Huế", "36 Võ thị Sáu, tp.Hồ CHí Minh", "ăn rồi lại muốn quay lại",  "");
+        Dish dish = new Dish("12", "Phở & lẩu bò", "ăn rồi lại muốn quay lại", "");
+        Dish dish1 = new Dish("2", "Phở Thìn",  "bát to, nhiều thịt, nên giá cũng đắt",  "");
+        Dish dish2 = new Dish("3", "Phở  Bò Huế", "quán ngay ngã tư sở. địa điểm đông khác nên hơi chật chội",  "");
+        Dish dish3 = new Dish("21", "phở Bò Huế", "ăn rồi lại muốn quay lại",  "");
         dishes.add(dish);
         dishes.add(dish1);
         dishes.add(dish2);
@@ -94,9 +93,9 @@ public class SearchPresenter {
         dishes.add(dish2);
 
         //test listview with temp data
-        Location location = new Location("l0001", "Phở cuốn Hương Mai", "27 Ngũ Xã, Quận Ba Đình, Hà Nội", "món ngon, không gian thoáng đãng", "");
-        Location location1 = new Location("l0001", "Phở Bò 36", "36 Lê Thanh Nghị, Hà nội", "món ngon, không gian thoáng đãng", "");
-        Location location2 = new Location("l0001", "cafe BrotherHood", "số 2, đường Láng, Hà nội", "món ngon, không gian thoáng đãng", "");
+        Location location = new Location("1", "Phở cuốn Hương Mai", "món ngon, không gian thoáng đãng","", "27 Ngũ Xã, Quận Ba Đình, Hà Nội");
+        Location location1 = new Location("12", "Phở Bò 36",  "món ngon, không gian thoáng đãng","", "36 Lê Thanh Nghị, Hà nội");
+        Location location2 = new Location("23", "cafe BrotherHood",  "món ngon, không gian thoáng đãng","", "số 2, đường Láng, Hà nội");
         locations.add(location);
         locations.add(location1);
         locations.add(location2);
