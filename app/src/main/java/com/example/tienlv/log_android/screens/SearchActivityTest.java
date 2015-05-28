@@ -61,7 +61,7 @@ public class SearchActivityTest extends Activity {
             String s = et_search.getText().toString();
             et_search.setText("");
 
-            logAPI.insertLog(LogAPI.EVENT_SEARCH_KEY, s);
+            logAPI.insertLog(LogAPI.EVENT_SEARCH_BY_KEY, s);
         }
     };
 

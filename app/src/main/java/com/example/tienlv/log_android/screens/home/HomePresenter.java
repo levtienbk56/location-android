@@ -1,46 +1,32 @@
 package com.example.tienlv.log_android.screens.home;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ListView;
 
 import com.example.tienlv.log_android.http.HttpTask;
 import com.example.tienlv.log_android.log.LogAPI;
 import com.example.tienlv.log_android.model.Dish;
 import com.example.tienlv.log_android.screens.dish.DishActivity;
+import com.example.tienlv.log_android.screens.home.http.AnalyzeDishData;
 import com.example.tienlv.log_android.screens.search.SearchActivity;
 
 import java.util.ArrayList;
 
 public class HomePresenter {
     private static HomeActivity activity;
-    private static ArrayList<Dish> arrayList = new ArrayList<Dish>();
-    private LogAPI logAPI;
+    public static ArrayList<Dish> dishes = new ArrayList<Dish>();
+    public static LogAPI logAPI;
 
     public HomePresenter(HomeActivity activity) {
         this.activity = activity;
         logAPI = new LogAPI(activity);
 
-        //========most important initialize ============//
-        //it dont need now,
-        //initStartupReceiver();
+        // Start receiver with the name StartupReceiver_Manual_Start
+        // Check AndroidManifest.xml file
+        activity.getBaseContext().getApplicationContext().sendBroadcast( new Intent("StartupReceiver_Manual_Start"));
 
-    }
-
-    public static void addDish(Dish dish){
-        arrayList.add(dish);
-    }
-
-    public static void clearDish(){
-        arrayList.clear();
-    }
-
-    public static ArrayList<Dish> getDishList(){
-        return arrayList;
-    }
-
-    public static void reloadListView(){
-        activity.reloadListView();
+        loadData();
     }
 
     /**
@@ -48,36 +34,28 @@ public class HomePresenter {
      */
     public void openSearch() {
         //insert db
-        //logAPI.insertLog(LogAPI.EVENT_SEARCH_KEY, s);
+        //logAPI.insertLog(LogAPI.EVENT_SEARCH_BY_KEY, s);
 
         Intent intent = new Intent(activity, SearchActivity.class);
         activity.startActivity(intent);
     }
 
 
-
-    public void searchNear(View v) {
-        //insert db
-        //logAPI.insertLog(LogAPI.EVENT_SEARCH_NEAR_BY, homePresenter.locateUser());
-
-        Intent intent = new Intent(activity, SearchActivity.class);
-        activity.startActivity(intent);
-    }
-
-    public void detailDisk(int position) {
-        //logAPI.insertLog(LogAPI.EVENT_VIEW_DETAIL_DISH, homePresenter.getDishList().get(position).getId());
+    public static void detailDish(int position) {
+        logAPI.insertLog(LogAPI.EVENT_VIEW_DETAIL_DISH, dishes.get(position).getId());
 
         Intent intent = new Intent(activity.getBaseContext(), DishActivity.class);
-        intent.putExtra("EXTRA_DISH_NO", position);
+        intent.putExtra("EXTRA_DISH_ID", dishes.get(position).getId());
         activity.startActivity(intent);
     }
 
-    /**
-     * get trend dish from server
-     */
-    public void requestDishs() {
+    public void loadData() {
         HttpTask task = new AnalyzeDishData();
-        task.execute("http://54.169.170.248:8080/Foodie/webresources/food/newest");
-
+        task.execute("http://52.74.170.49:8080/foodie/populated");
     }
+
+    public static void reloadListView(){
+        activity.reloadListView();
+    }
+
 }

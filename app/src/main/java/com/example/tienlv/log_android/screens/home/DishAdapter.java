@@ -43,20 +43,15 @@ public class DishAdapter extends BaseAdapter {
     public android.view.View getView(int position, android.view.View convertView, android.view.ViewGroup parent) {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.adapter_dish_home, null);
-        TextView tvName = (TextView) convertView.findViewById(R.id.tv_name_search_dish);
-        TextView tvLike = (TextView) convertView.findViewById(R.id.tv_like_home_disk);
-        TextView tvLocation = (TextView) convertView.findViewById(R.id.tv_location_home_disk);
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.image_home_disk);
+        TextView tvName = (TextView) convertView.findViewById(R.id.tv_name_home);
+        TextView tvDesc = (TextView) convertView.findViewById(R.id.tv_description_home);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.image_dish_home);
 
         Dish dish = getItem(position);
         tvName.setText(dish.getName());
-        //check image links
-        String url;
-        if (getItem(position).getImages().isEmpty()) {
-            url = "";
-        } else
-            url = arrayList.get(position).getImages().get(0);
-        imageLoader.displayImage(url, imageView, 100);  //100-requireSize
+        tvDesc.setText(dish.getDescription());
+
+        imageLoader.displayImage(dish.getThumbnail(), imageView, 100);  //100-requireSize
 
         return convertView;
     }

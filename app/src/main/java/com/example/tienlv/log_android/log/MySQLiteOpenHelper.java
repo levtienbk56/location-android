@@ -178,7 +178,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     public ArrayList<Log> getAllLog() {
         database = this.getReadableDatabase();
-        ArrayList<Log> arrayList = new ArrayList<Log>();
+        ArrayList<Log> arrayList = new ArrayList<>();
 
         //SQL query
         String query = "SELECT * FROM " + MySQLiteConstract.TblLog.TABLE_NAME;
@@ -200,7 +200,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
             c.close();
         }
-
+        android.util.Log.d(TAG, "size " + arrayList.size());
         return arrayList;
     }
 
@@ -213,4 +213,8 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
         android.util.Log.d(TAG, "deleteLog id = " + _id + " : " + i);
     }
 
+    public void deleteAllLog() {
+        database = this.getWritableDatabase();
+        database.delete(MySQLiteConstract.TblLog.TABLE_NAME, null, null);
+    }
 }

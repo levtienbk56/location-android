@@ -9,12 +9,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.tienlv.log_android.R;
+import com.example.tienlv.log_android.log.MainActivity;
 import com.melnykov.fab.FloatingActionButton;
 
 public class HomeActivity extends Activity implements IHomeActivity {
 
-    private static DishAdapter dishAdapter = null;
-    private static ListView listView = null;
+    private static DishAdapter dishAdapter;
+    private static ListView listView;
     private HomePresenter presenter;
 
     @Override
@@ -23,39 +24,32 @@ public class HomeActivity extends Activity implements IHomeActivity {
         setContentView(R.layout.activity_home);
 
         presenter = new HomePresenter(this);
-        //==============================================//
-        //get trend dishs from server
-        //presenter.requestDishs();
 
         //show list
-        listView = (ListView) findViewById(R.id.lv_search_home);
+        listView = (ListView) findViewById(R.id.lv_dish_home);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_home);
         fab.attachToListView(listView);
-        dishAdapter = new DishAdapter(this, presenter.getDishList());
+
+    }
+
+    public void reloadListView() {
+        dishAdapter = new DishAdapter(this, HomePresenter.dishes);
         listView.setAdapter(dishAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //detailDisk(position);
+                HomePresenter.detailDish(position);
             }
         });
-        reloadListView();
-    }
-
-    public void reloadListView() {
-        dishAdapter.notifyDataSetChanged();
-        listView.setAdapter(dishAdapter);
     }
 
     public void openSearch(View v){
         presenter.openSearch();
     }
 
-    private void initStartupReceiver() {
-
-        // Start receiver with the name StartupReceiver_Manual_Start
-        // Check AndroidManifest.xml file
-        getBaseContext().getApplicationContext().sendBroadcast(
-                new Intent("StartupReceiver_Manual_Start"));
+    public void checkLog(View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
+
 }

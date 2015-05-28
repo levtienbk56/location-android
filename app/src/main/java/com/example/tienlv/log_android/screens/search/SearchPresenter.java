@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
+import com.example.tienlv.log_android.log.LogAPI;
 import com.example.tienlv.log_android.model.Dish;
 import com.example.tienlv.log_android.model.Location;
 import com.example.tienlv.log_android.screens.dish.DishActivity;
@@ -20,6 +21,7 @@ public class SearchPresenter {
     public static Fragment diskFragment;
     public static Fragment locationFragment;
     public static Fragment albumFragment;
+    public static LogAPI logAPI;
 
     // <editor-fold desc=" Getter & Setter">
     public static ArrayList<Dish> getDishes() {
@@ -41,6 +43,7 @@ public class SearchPresenter {
 
     public SearchPresenter(SearchActivity activity){
         this.activity = activity;
+        logAPI = new LogAPI(activity);
 
         diskFragment = new DishFragment();
         locationFragment = new LocationFragment();
@@ -55,11 +58,17 @@ public class SearchPresenter {
 
     //<editor-fold desc = "navigate to activity"
     public static void detailDish(int position){
+        //write log
+        logAPI.insertLog(LogAPI.EVENT_VIEW_DETAIL_DISH, dishes.get(position).getId());
+
         Intent intent = new Intent(activity, DishActivity.class);
         intent.putExtra("EXTRA_DISH_ID", dishes.get(position).getId());
         activity.startActivity(intent);
     }
     public static void detailLocation(int position){
+        //write log
+        logAPI.insertLog(LogAPI.EVENT_VIEW_DETAIL_LOCATION, locations.get(position).getId());
+
         Intent intent = new Intent(activity, LocationActivity.class);
         intent.putExtra("EXTRA_LOCATION_ID", locations.get(position).getId());
         activity.startActivity(intent);
@@ -67,7 +76,9 @@ public class SearchPresenter {
     //</editor-fold>
 
     public static void loadData(String keyword){
-        Log.d(TAG, "keyword: " +keyword);
+        //write log
+        logAPI.insertLog(LogAPI.EVENT_SEARCH_BY_KEY, keyword);
+
         AnalyzeDishData task = new AnalyzeDishData();
         task.execute("http://52.74.170.49:8080/foodie/search/query?q=" + keyword);
     }

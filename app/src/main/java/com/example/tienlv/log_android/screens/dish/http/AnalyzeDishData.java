@@ -19,13 +19,15 @@ public class AnalyzeDishData extends HttpGetTask {
 
         try {
             JSONObject json = new JSONObject(s);
-            DishPresenter.dish.setId("" + json.getInt("aId"));
-            DishPresenter.dish.setName("" + json.getString("name"));
-            DishPresenter.dish.setDescription("" + json.getString("description"));
+            DishPresenter.dish.setId("" + json.optInt("aId", 0));
+            DishPresenter.dish.setName("" + json.optString("name", ""));
+            DishPresenter.dish.setDescription("" + json.optString("description", ""));
 
-            JSONArray jsonArray = json.getJSONArray("images");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                DishPresenter.dish.getImages().add(jsonArray.getString(i));
+            JSONArray jsonArray = json.optJSONArray("images");
+            if(jsonArray!=null) {
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    DishPresenter.dish.getImages().add(jsonArray.getString(i));
+                }
             }
 
             jsonArray = json.optJSONArray("fol");
@@ -35,10 +37,10 @@ public class AnalyzeDishData extends HttpGetTask {
                     DishOL dishOL = new DishOL();
                     js = jsonArray.getJSONObject(i);
 
-                    dishOL.setId(js.getInt("fl_id") + "");
-                    dishOL.setPrice(js.getInt("price"));
-                    dishOL.getLocation().setId(js.getInt("location_id") + "");
-                    dishOL.getLocation().setAddress(js.getString("address") + "");
+                    dishOL.setId(js.optInt("fl_id", 0) + "");
+                    dishOL.setPrice(js.optInt("price", 0));
+                    dishOL.getLocation().setId(js.optInt("location_id", 0) + "");
+                    dishOL.getLocation().setAddress(js.optString("address", "") + "");
 
                     DishPresenter.dishOLs.add(dishOL);
                 }

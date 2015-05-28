@@ -14,13 +14,14 @@ import com.example.tienlv.log_android.R;
 import com.example.tienlv.log_android.http.HttpGetTask;
 import com.example.tienlv.log_android.http.HttpTask;
 import com.example.tienlv.log_android.log.model.Event;
+import com.example.tienlv.log_android.log.model.Log;
 import com.example.tienlv.log_android.screens.SearchActivityTest;
 
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
-    Button btInsert, btDelete, btShowall, btDeleteAll, btChangeStep, btSearchActivity, btHttp;
+    Button btInsert, btDelete, btShowall, btDeleteAll, btChangeStep;
     EditText etName, etID, etStep;
     TextView tvResult;
     private MySQLiteOpenHelper dataHelper;
@@ -29,7 +30,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initStartupReceiver();
+        //initStartupReceiver();
+        dataHelper = MySQLiteOpenHelper.getInstance(MainActivity.this);
+
 
         etName = (EditText) findViewById(R.id.et_name);
         etID = (EditText) findViewById(R.id.et_id);
@@ -43,40 +46,15 @@ public class MainActivity extends Activity {
         btShowall = (Button) findViewById(R.id.bt_showall);
         btDeleteAll = (Button) findViewById(R.id.bt_delete_all);
         btChangeStep = (Button) findViewById(R.id.bt_change_step);
-        btSearchActivity = (Button) findViewById(R.id.bt_search_activity);
-        btHttp = (Button) findViewById(R.id.bt_http);
 
         btInsert.setOnClickListener(insertOnClick);
         btDelete.setOnClickListener(deleteOnClick);
         btShowall.setOnClickListener(showallOnClick);
         btDeleteAll.setOnClickListener(deleteAllOnClick);
         btChangeStep.setOnClickListener(changeStepOnClick);
-        btSearchActivity.setOnClickListener(searchActivityOnClick);
-        btHttp.setOnClickListener(httpOnClick);
 
-        dataHelper = MySQLiteOpenHelper.getInstance(MainActivity.this);
 
     }
-
-    private OnClickListener httpOnClick = new OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            //----------------test http request --------------------------
-            HttpTask task = new HttpGetTask();
-            task.execute("http://www.google.com/search?q=mkyong");
-
-
-        }
-    };
-
-    private OnClickListener searchActivityOnClick = new OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this, SearchActivityTest.class);
-            startActivity(intent);
-        }
-    };
-
     private OnClickListener insertOnClick = new OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -93,7 +71,7 @@ public class MainActivity extends Activity {
         public void onClick(View view) {
             String id = etID.getText().toString();
 
-            dataHelper.deleteEvent(id);
+            dataHelper.deleteLog(id);
         }
     };
 
@@ -102,10 +80,11 @@ public class MainActivity extends Activity {
         public void onClick(View view) {
             tvResult.setText("");
 
-            ArrayList<Event> arrayList = dataHelper.getEventAll();
+            ArrayList<Log> arrayList = dataHelper.getAllLog();
             int i;
             for (i = 0; i < arrayList.size(); i++) {
-                tvResult.append("-" + arrayList.get(i).get_id() + " " + arrayList.get(i).getName() + "\n");
+                Log log = arrayList.get(i);
+                tvResult.append("-" + log.get_id() + " " + log.getEventName() + " " + log.getDate()  + " " + log.getValue() + "\n");
             }
         }
     };
@@ -113,7 +92,7 @@ public class MainActivity extends Activity {
     private OnClickListener deleteAllOnClick = new OnClickListener() {
         @Override
         public void onClick(View view) {
-            dataHelper.deleteAllEvent();
+            dataHelper.deleteAllLog();
         }
     };
 

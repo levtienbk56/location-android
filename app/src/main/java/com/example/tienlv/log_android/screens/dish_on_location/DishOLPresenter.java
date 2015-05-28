@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.tienlv.log_android.log.LogAPI;
 import com.example.tienlv.log_android.model.DishOL;
 import com.example.tienlv.log_android.model.Location;
 import com.example.tienlv.log_android.screens.dish_on_location.http.AnalyzeDishData;
@@ -13,9 +14,11 @@ public class DishOLPresenter {
     public static DishOLActivity activity;
     public static DishOL dishOL;
     public static Location location;
+    public static LogAPI logAPI;
 
     public DishOLPresenter(DishOLActivity activity){
         DishOLPresenter.activity = activity;
+        logAPI = new LogAPI(activity);
         dishOL = new DishOL();
         location = new Location();
 
@@ -38,6 +41,9 @@ public class DishOLPresenter {
     }
 
     public static void detailLocation(){
+        //write log
+        logAPI.insertLog(LogAPI.EVENT_VIEW_DETAIL_LOCATION, dishOL.getLocation().getId());
+
         Intent intent = new Intent(activity, LocationActivity.class);
         intent.putExtra("EXTRA_LOCATION_ID", dishOL.getLocation().getId());
         activity.startActivity(intent);
